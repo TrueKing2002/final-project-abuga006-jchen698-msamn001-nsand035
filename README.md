@@ -30,7 +30,7 @@
  > 
  > You also need to set up an empty project board by choosing the  “Automated kanban with review” option on Github. You should also have a Backlog and In testing columns added.
  > * Chess has always been a favorite game of mine ever since I learned how to play it. It's both fun and strategic and every game is different but sure to excite.
- > * I plan to use code this game in C++
+ > * I plan to code this game in C++
  > * The user will be able to start a game, selecting whether to play the computer or another player, or load an incomplete game and continue playing. The user will input the coordinates of the piece they want to move and the coordinates of where they want to move it. They will have the option to undo a move and to save the game.
  > ## Phase II
  > In addition to completing the "Class Diagram" section below, you will need to:
