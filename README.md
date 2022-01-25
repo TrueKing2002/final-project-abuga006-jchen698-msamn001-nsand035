@@ -2,7 +2,7 @@
  > Prompt text is any lines beginning with "\>"
  > Replace anything between \<...\> with your project specifics and remove angle brackets. For example, you need to name your project and replace the header right below this line with that title (no angle brackets). 
 # Chess 100
- > Your author list below should include links to all members GitHub (remove existing author).
+ > Your author list below should include links to all members GitHub.
  
  > Authors: \<[Adolfo Bugarin](https://github.com/TrueKing2002)\>
  
