@@ -4,7 +4,8 @@
 # Chess 100
  > Your author list below should include links to all members GitHub.
  
- > Authors: \<[Adolfo Bugarin](https://github.com/TrueKing2002)\>
+ > Authors: \<[Adolfo Bugarin](https://github.com/TrueKing2002)\> 
+ > \<[Megan Samn](https://github.com/megansamn)\>
  
  > You will be forming a group of **FOUR** students and working on an interesting project. The project has 4 phases, each one with specific requirements. A list of proposed project ideas that have been successful in previous quarters is listed in the project specifications document on Canvas. You can select an idea from the list, start thinking about the features you will implement, what design patterns can help you implement them, and why. If you want to propose your own original idea, you will have to contact an instructor to discuss the project and obtain written permission before you submit your project proposal (Phase 1). Your project needs to implement at least one design pattern iteratively, which you will have to justify in later phases.The project work should be divided almost equally among team members. You can of course help each other, but it needs to be clear who will be responsible for which features. Additionally, you are expected to follow Scrum patterns, specifically the use of a Scrum (Project) board, Sprints, and Scrum meetings. While Daily Scrums are not required we highly encourage you to practice them.
 
