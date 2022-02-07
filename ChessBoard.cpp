@@ -43,7 +43,7 @@ void ChessBoard::printBoard() {
     int row = 8;
     for(int i = 0; i < 64; i++) {
         if((i + 8) % 8 == 0) {cout << row << ' '; row--;}
-        if(board[i].piece == nullptr) cout << "• ";
+        if(board[i].piece == nullptr) cout << "· ";
         else cout << board[i].piece->getPiece() << ' ';
         if((i + 1) % 8 == 0) cout << endl;
     }
