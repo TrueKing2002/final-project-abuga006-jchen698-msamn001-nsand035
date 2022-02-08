@@ -1,4 +1,4 @@
-#include "ChessBoard.cpp"
+#include "board/ChessBoard.cpp"
 
 int main() {
     ChessBoard game;  // Player is white by default
