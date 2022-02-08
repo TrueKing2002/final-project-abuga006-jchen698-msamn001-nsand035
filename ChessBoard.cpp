@@ -1,51 +1,75 @@
 #include "ChessBoard.hpp"
 
 ChessBoard::ChessBoard() {
-    board = new ChessSquare[64];
+    board = new ChessPiece*[64];
     newBoard();
 }
 
 ChessBoard::~ChessBoard() {
-    for(int i = 0; i < 64; i++)
-        if(board[i].piece != nullptr)
-            delete board[i].piece;
+    for (int i = 0; i < 64; i++)
+        if (board[i] != nullptr)
+            delete board[i];
 }
 
 void ChessBoard::newBoard() {
-    board[0].piece = new Rook;  // Sets up white pieces
-    board[1].piece = new Knight;
-    board[2].piece = new Bishop;
-    board[3].piece = new Queen;
-    board[4].piece = new King;
-    board[5].piece = new Bishop;
-    board[6].piece = new Knight;
-    board[7].piece = new Rook;
-    for(int i = 8; i < 16; i++)
-        board[i].piece = new Pawn;
-    for(int i = 0; i < 16; i++)
-        board[i].piece->white = false;
+    board[0] = new Rook;  // Sets up white pieces
+    board[1] = new Knight;
+    board[2] = new Bishop;
+    board[3] = new King;
+    board[4] = new Queen;
+    board[5] = new Bishop;
+    board[6] = new Knight;
+    board[7] = new Rook;
+    for (int i = 8; i < 16; i++)
+        board[i] = new Pawn;
+    for (int i = 0; i < 16; i++) {
+        board[i]->white = true;
+        board[i]->location = i;
+    }
 
-    for(int i = 48; i < 56; i++)    // Sets up black pieces
-        board[i].piece = new Pawn;
-    board[56].piece = new Rook;
-    board[57].piece = new Knight;
-    board[58].piece = new Bishop;
-    board[59].piece = new Queen;
-    board[60].piece = new King;
-    board[61].piece = new Bishop;
-    board[62].piece = new Knight;
-    board[63].piece = new Rook;
-    for(int i = 48; i < 64; i++) 
-        board[i].piece->white = true;
+    for (int i = 48; i < 56; i++)    // Sets up black pieces
+        board[i] = new Pawn;
+    board[56] = new Rook;
+    board[57] = new Knight;
+    board[58] = new Bishop;
+    board[59] = new King;
+    board[60] = new Queen;
+    board[61] = new Bishop;
+    board[62] = new Knight;
+    board[63] = new Rook;
+    for (int i = 48; i < 64; i++) {
+        board[i]->white = false;
+        board[i]->location = i;
+    }
 }
 
 void ChessBoard::printBoard() {
-    int row = 8;
-    for(int i = 0; i < 64; i++) {
-        if((i + 8) % 8 == 0) {cout << row << ' '; row--;}
-        if(board[i].piece == nullptr) cout << "· ";
-        else cout << board[i].piece->getPiece() << ' ';
-        if((i + 1) % 8 == 0) cout << endl;
+    if (playerIsWhite) {    // Prints normal board
+        int row = 8;
+        for (int i = 63; i >= 0; i--) {
+            if ((i + 1) % 8 == 0) {cout << row << ' '; row--;}
+            if (board[i] == nullptr) cout << "· ";
+            else cout << board[i]->getPiece() << ' ';
+            if (i % 8 == 0) cout << endl;
+        }
+        cout << "  a b c d e f g h " << endl;
+    } else {    // Prints reversed board
+        int row = 1;
+        for (int i = 0; i < 64; i++) {
+            if ((i + 8) % 8 == 0) {cout << row << ' '; row++;}
+            if (board[i] == nullptr) cout << "· ";
+            else cout << board[i]->getPiece() << ' ';
+            if ((i + 1) % 8 == 0) cout << endl;
+        }
+        cout << "  h g f e d c b a " << endl;
     }
-    cout << "  a b c d e f g h " << endl;
+}
+
+void ChessBoard::movePiece(int loc, int dest) {
+    loc = trans(loc);
+    dest = trans(dest);
+    if (board[dest] != nullptr) delete board[dest];
+    board[dest] = board[loc];   // Moves piece to new location
+    board[dest]->location = dest;   // Sets new piece's location
+    board[loc] = nullptr;   // Removes piece from old location
 }
