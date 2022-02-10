@@ -1,9 +1,6 @@
- > As you complete each section you **must** remove the prompt text. Every *turnin* of this project includes points for formatting of this README so keep it clean and keep it up to date. 
- > Prompt text is any lines beginning with "\>"
- > Replace anything between \<...\> with your project specifics and remove angle brackets. For example, you need to name your project and replace the header right below this line with that title (no angle brackets). 
 # Chess 100
  
- > Authors: [Adolfo Bugarin](https://github.com/TrueKing2002), [Megan Samn](https://github.com/megansamn), [Justin Chen](https://github.com/jc51001), [Nick Sandburg](https://github.com/njsandburg)
+  Authors: [Adolfo Bugarin](https://github.com/TrueKing2002), [Megan Samn](https://github.com/megansamn), [Justin Chen](https://github.com/jc51001), [Nick Sandburg](https://github.com/njsandburg)
  
 
  
@@ -21,17 +18,7 @@
   * Chess has always been a favorite game of mine ever since I learned how to play it. It's both fun and strategic and every game is different but sure to excite.
   * I plan to code this game in C++
   * The user will be able to start a game, selecting whether to play the computer or another player, or load an incomplete game and continue playing. The user will input the coordinates of the piece they want to move and the coordinates of where they want to move it. They will have the option to undo a move and to save the game.
- > ## Phase II
- > In addition to completing the "Class Diagram" section below, you will need to:
- > * Create an "Epic" (note) for each feature and each design pattern and assign them to the appropriate team member. Place these in the `Backlog` column
- > * Complete your first *sprint planning* meeting to plan out the next 7 days of work.
- >   * Create smaller actionable development tasks as issues and assign them to team members. Place these in the `TODO` column.
- >   * These cards should represent roughly 7 days worth of development time for your team, taking you until your first meeting with the TA
- > * Schedule two check-ins using Calendly. You need to pick both time slots during your lab on week 8. Your entire team must be present for both check-ins.
- >   * The first check-in needs to be scheduled with your lab TA. During that meeting, you will discuss your project design/class diagram from phase II.
- >   * The second check-in should be scheduled with a reader. During that meeting you will discuss:
- >     * The tasks you are planning for the first sprint
- >     * How work will be divided between the team members
+
 
 ## Class Diagram
  [UML class: Lucidchart.pdf](https://github.com/cs100/final-project-abuga006-jchen698-msamn001-nsand035/files/8029443/UML.class.Lucidchart.pdf)
