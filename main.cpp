@@ -1,6 +1,29 @@
 #include "board/ChessBoard.cpp"
+#include "ChessGame.hpp"
+//#include "ChessGame.hpp"
+#include <iostream>
+using namespace std;
 
 int main() {
+
+	int menuOption = 0;
+	while (menuOption != 3) {
+		menuOption = loadMenu();
+		if (menuOption == 1) {
+			cout << "start new Game";
+		}
+		else if (menuOption == 2) {
+			cout << "load game";
+		}
+
+	}
+	cout << "quit";
+	return 0;
+	
+	
+
+
+
     ChessBoard game;  // Player is white by default
     cout << "PRINT BOARD WHITE:\n";
     game.printBoard(); 

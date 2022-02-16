@@ -1,5 +1,5 @@
-#ifndef CHESSGAME
-#define CHESSGAME
+#ifndef CHESSGAME_HPP
+#define CHESSGAME_HPP
 
 #include "ChessBoard.hpp"
 
@@ -10,5 +10,10 @@ class ChessGame {
         ~ChessGame();
         void newGame();
 };
+
+void printMenu();
+int loadMenu();
+//int chooseColor();
+
 
 #endif
