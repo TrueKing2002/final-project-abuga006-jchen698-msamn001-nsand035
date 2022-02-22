@@ -11,18 +11,18 @@
 class ChessBoard {
     private: 
         ChessPiece **board;
-        bool playerIsWhite = true;
     public: 
         ChessBoard(); 
         ~ChessBoard();
         void newBoard(); 
         void printBoard();
         ChessPiece** sendBoard() {return board;}
-        void setPlayerWhite() {playerIsWhite = true;}
-        void setPlayerBlack() {playerIsWhite = false;}
-        bool isPlayerWhite() {return playerIsWhite;}
         ChessPiece* getPiece(int i) {return board[trans(i)];}
         void movePiece(int, int);
+	bool whiteInCheck();
+	bool blackInCheck();
+	void printBoardWhite();
+	void printBoardBlack();
 };
 
 #endif

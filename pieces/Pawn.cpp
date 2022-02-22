@@ -1,6 +1,9 @@
 #include "ChessPiece.hpp"
 
 class Pawn : public ChessPiece {
+public:
+    Pawn() {id = 1;}
+
     string getPiece() {
         if (white) return "♟";
         else return "♙";

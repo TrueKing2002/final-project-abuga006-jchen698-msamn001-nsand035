@@ -1,7 +1,10 @@
 #include "ChessGame.hpp"
 
-ChessGame::ChessGame() {}
+void ChessGame::move(int l, int d) {
+	theBoard->movePiece(l, d);
+}
 
-ChessGame::~ChessGame() {}
-
-void ChessGame::newGame() {}
+void ChessGame::printBoard() {
+	if (playerIsWhite) theBoard->printBoardWhite();
+        else theBoard->printBoardBlack();
+}

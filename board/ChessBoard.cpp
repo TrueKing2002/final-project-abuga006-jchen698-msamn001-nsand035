@@ -43,33 +43,64 @@ void ChessBoard::newBoard() {
     }
 }
 
-void ChessBoard::printBoard() {
-    if (playerIsWhite) {    // Prints normal board
-        int row = 8;
-        for (int i = 63; i >= 0; i--) {
-            if ((i + 1) % 8 == 0) {cout << row << ' '; row--;}
-            if (board[i] == nullptr) cout << "· ";
-            else cout << board[i]->getPiece() << ' ';
-            if (i % 8 == 0) cout << endl;
-        }
-        cout << "  a b c d e f g h " << endl;
-    } else {    // Prints reversed board
-        int row = 1;
-        for (int i = 0; i < 64; i++) {
-            if ((i + 8) % 8 == 0) {cout << row << ' '; row++;}
-            if (board[i] == nullptr) cout << "· ";
-            else cout << board[i]->getPiece() << ' ';
-            if ((i + 1) % 8 == 0) cout << endl;
-        }
-        cout << "  h g f e d c b a " << endl;
-    }
-}
-
 void ChessBoard::movePiece(int loc, int dest) {
     loc = trans(loc);
     dest = trans(dest);
-    if (board[dest] != nullptr) delete board[dest];
-    board[dest] = board[loc];   // Moves piece to new location
-    board[dest]->location = dest;   // Sets new piece's location
-    board[loc] = nullptr;   // Removes piece from old location
+    if (board[loc] == nullptr) cout << "WARNING: ATTEMPTING TO MOVE EMPTY SQUARE" << endl;
+    else {
+        if (board[dest] != nullptr) delete board[dest];
+        board[dest] = board[loc];   // Moves piece to new location
+        board[dest]->location = dest;   // Sets new piece's location
+        board[loc] = nullptr;   // Removes piece from old location
+    }
+}
+
+bool ChessBoard::whiteInCheck() {
+    int kingLocation = -1;
+    for (int i = 0; i < 64; i++) 
+        if (board[i] != nullptr && board[i]->white == true && board[i]->id == 6) 
+            kingLocation = board[i]->location;
+
+    if (kingLocation == -1) cout << "\nERROR: NO WHITE KING FOUND\n";
+
+    for (int i = 0; i < 64; i++) 
+        if (board[i] != nullptr && board[i]->white == false && board[i]->canMove(board, kingLocation))
+            return true;
+    return false;
+}
+
+bool ChessBoard::blackInCheck() {
+    int kingLocation = -1;
+    for (int i = 0; i < 64; i++) 
+        if (board[i] != nullptr && board[i]->white == false && board[i]->id == 6) 
+            kingLocation = board[i]->location;
+
+    if (kingLocation == -1) cout << "\nERROR: NO BLACK KING FOUND\n";
+
+    for (int i = 0; i < 64; i++) 
+        if (board[i] != nullptr && board[i]->white == true && board[i]->canMove(board, kingLocation))
+            return true;
+    return false;
+}
+
+void ChessBoard::printBoardWhite() {
+    int row = 8;
+    for (int i = 63; i >= 0; i--) {
+        if ((i + 1) % 8 == 0) {cout << row << ' '; row--;}
+        if (board[i] == nullptr) cout << "· ";
+        else cout << board[i]->getPiece() << ' ';
+        if (i % 8 == 0) cout << endl;
+    }
+    cout << "  a b c d e f g h \n" << endl;
+}
+
+void ChessBoard::printBoardBlack() {
+    int row = 1;
+    for (int i = 0; i < 64; i++) {
+        if ((i + 8) % 8 == 0) {cout << row << ' '; row++;}
+        if (board[i] == nullptr) cout << "· ";
+        else cout << board[i]->getPiece() << ' ';
+        if ((i + 1) % 8 == 0) cout << endl;
+    }
+    cout << "  h g f e d c b a \n" << endl;
 }
