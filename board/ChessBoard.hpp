@@ -15,7 +15,6 @@ class ChessBoard {
         ChessBoard(); 
         ~ChessBoard();
         void newBoard(); 
-        void printBoard();
         ChessPiece** sendBoard() {return board;}
         ChessPiece* getPiece(int i) {return board[trans(i)];}
         void movePiece(int, int);
