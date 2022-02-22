@@ -11,9 +11,10 @@ class ChessGame {
         void newGame();
 };
 
+// functions
 void printMenu();
 int loadMenu();
-//int chooseColor();
+int chooseColor();
 
 
 #endif

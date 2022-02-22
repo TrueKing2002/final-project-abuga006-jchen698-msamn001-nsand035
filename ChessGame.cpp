@@ -6,6 +6,7 @@ ChessGame::~ChessGame() {}
 
 void ChessGame::newGame() {}
 
+// prints menu
 void printMenu()
 {
 	cout << "\n********************************************************************\n";
@@ -21,6 +22,7 @@ void printMenu()
 	return;
 }
 
+// function to get user choice 1, 2, 3
 int loadMenu() {
 	string choice = " ";
 	int choiceNum = 0;
@@ -45,17 +47,21 @@ int loadMenu() {
 	cout << "exit";
 }
 
-// ask for white or black
-/*int chooseColor() {
-	int color = 0;
-	cout << "Would you like to play as white or black?\n"
-		+ "Choose 1 for white, or 2 for black\n";
-	cin >> color;
-
-	if (color != 1 || color != 2) {
-		"Invalid option, please enter 1 or 2";
-		int chooseColor();
+// ask user for white or black
+int chooseColor() {
+	string color = " ";
+	int colorInt = 0;
+	cout << "Would you like to play as white or black?\n";
+	cout << "Choose 1 for white, or 2 for black\n";
+	while (color != "1" && color != "2") {
+		cin >> color;
+		cout << "Please enter 1 for white or 2 for black: ";
 	}
-
-	return color;
-}*/
+	if (color == "1") {
+		colorInt = 1;
+	}
+	else {
+		colorInt = 2;
+	}
+	return colorInt;
+}

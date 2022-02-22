@@ -10,6 +10,16 @@ int main() {
 	while (menuOption != 3) {
 		menuOption = loadMenu();
 		if (menuOption == 1) {
+			// call chooseColor() and get color from user
+			// they picked white
+			if (chooseColor() == 1) {
+				cout << "you are white.";
+			}
+			// they picked black
+			else {
+				cout << "you are black.";
+			}
+			// player or computer?
 			cout << "start new Game";
 		}
 		else if (menuOption == 2) {
