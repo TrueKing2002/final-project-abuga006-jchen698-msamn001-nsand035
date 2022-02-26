@@ -12,7 +12,7 @@ void ChessGame::printBoard() {
 void ChessGame::computerMove() {
     srand(time(0));
     int randnum1 = rand() % 64; 
-    ChessPiece* randomPiece = theBoard[randnum1];
+    ChessPiece* randomPiece = theBoard->getPiece(randnum1);
 
     while ((playerIsWhite && randomPiece->white == true) || (!playerIsWhite && randomPiece->white == false)) { 
     	randnum1 = rand() % 64;
@@ -20,7 +20,7 @@ void ChessGame::computerMove() {
     
     int randomDest = rand() % 64;
     
-    while (!randomPiece->canMove(theBoard, randomDest)) {
+    while (!randomPiece->canMove(theBoard->sendBoard(), randomDest)) {
 	randomDest = rand() % 64;
     }
     move(randnum1, randomDest); 
