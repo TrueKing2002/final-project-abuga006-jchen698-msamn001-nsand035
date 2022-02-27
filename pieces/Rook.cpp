@@ -9,17 +9,29 @@ public:
         else return "♖";
     }
     
-    bool inColumn(int dest, int location) {
+    bool validColumn(ChessPiece** board, int dest, int location) {
     	for (int i = 0; i < 8; ++i) {
-		if ( (location - (8*i) > 0) && (dest == location - (8*i)) || (location + (8*i) < 64) && (dest == location + (8*i)) ) {
-            	// if (dest is below location and more than 0 || dest is above location and less than 64)
-        		return true;
-        	}
+	    if (location - (8*i) > 0) { //checking below location
+            	if (board[location - (8*i)] != nullptr) { //if there is a piece in the way, can't pass through a piece
+                	return false;
+            	}
+            	else if (dest == location - (8*i)) { //found valid destination
+                	return true;
+            	}
+            }
+            if (location + (8*i) < 64) { //checking above location
+                if (board[location + (8*i)] != nullptr) { //if there is a piece in the way, can't pass through a piece
+                        return false;
+                }
+                else if (dest == location + (8*i)) { //found valid destination
+                        return true;
+                }
+            }	
         }
         return false;
     }
 	
-    bool inRow(int dest, int location) {
+    bool validRow(ChessPiece** board, int dest, int location) {
     int leftEdge = 0;
     int rightEdge = 0;
     
@@ -33,9 +45,21 @@ public:
     }
     
     for (int i = 0; i < 8; ++i) {
-        if (((dest == (location - i)) && (location - i) >= leftEdge) || ((dest == (location + i)) && (location + i) <= rightEdge)) {
-        // if (dest is right of left edge || dest is left of right edge)    
-	    return true;
+        if ( (location - i) >= leftEdge ) { //checking left side
+            if (board[(location - i)] != nullptr) { //if there is a piece in the way, can't pass through a piece
+                return false;
+            }
+            else if (dest == (location - i)) { //found valid destination
+                return true;
+            }
+        }
+	if ( (location + i) <= rightEdge ) { //checking right side
+            if (board[(location + i)] != nullptr) { //if there is a piece in the way, can't pass through a piece
+                return false;
+            }
+            else if (dest == (location + i)) { //found valid destination
+                return true;
+            }
         }
     }
     
@@ -44,16 +68,14 @@ public:
 
     bool canMove(ChessPiece** board, int dest) {
 	dest = trans(dest);
-	if (inRow(dest, location) || inColumn(dest, location)) {
-        // if dest in same row or in same column, its valid
-        	if (board[dest] == nullptr) {
-        		// if dest == nullptr, its valid
+	if (validRow(board, dest, location) || validColumn(board, dest, location)) {
+        // if dest is in same row or in same column and has a clear path
+        	if (board[dest] == nullptr) { //if empty spot, valid
         		return true;
 		}
 		else {
                 	// if dest != nullptr, there's a piece there... if that piece's color isnt ours, return true, else return false
         		if ( (!board[dest]->white && board[location]->white) || (board[dest]->white && !board[location]->white) ) {
-			//if (!board[dest]->white && board[location]->white) || (board[dest]->white && !board[location]->white)
 				return true;
 			}
 		}
