@@ -15,7 +15,6 @@ class ChessGame {
         void setPlayerWhite() {playerIsWhite = true;}
         void setPlayerBlack() {playerIsWhite = false;}
         bool move(int, int);
-	void computerMove();
 	int inCheck();
         void printBoard();
 	void computerMove();
