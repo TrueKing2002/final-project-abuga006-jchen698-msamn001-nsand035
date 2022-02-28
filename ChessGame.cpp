@@ -14,9 +14,6 @@ bool ChessGame::move(int l, int d) {	// Assume l and d are valid board indices
     return false;
 }
 
-void ChessGame::computerMove() {
-}
-
 int ChessGame::inCheck() {
     if (playerIsWhite && theBoard->whiteInCheck() || !playerIsWhite && theBoard->blackInCheck()) // if player is in check
         return 2;
