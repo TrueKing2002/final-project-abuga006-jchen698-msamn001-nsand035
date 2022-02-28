@@ -14,6 +14,7 @@ class ChessGame {
         void setPlayerBlack() {playerIsWhite = false;}
         void move(int, int);
         void printBoard();
+	void computerMove();
 };
 
 #endif
