@@ -10,23 +10,25 @@ public:
     }
     
     bool validColumn(ChessPiece** board, int dest, int location) {
-    	for (int i = 0; i < 8; ++i) {
-	    if (location - (8*i) > 0) { //checking below location
-            	if (board[location - (8*i)] != nullptr) { //if there is a piece in the way, can't pass through a piece
-                	return false;
-            	}
-            	else if (dest == location - (8*i)) { //found valid destination
-                	return true;
-            	}
-            }
-            if (location + (8*i) < 64) { //checking above location
-                if (board[location + (8*i)] != nullptr) { //if there is a piece in the way, can't pass through a piece
-                        return false;
+    	for (int i = 1; i < 9; ++i) {
+	    
+	    if (location - (8*i) > 0 && location - (8*i) >= dest) { //move Rook down
+                if (board[location - (8*i)] != nullptr && location - (8*i) > dest) { //if there is a piece before we reach destination
+			return false;
                 }
-                else if (dest == location + (8*i)) { //found valid destination
+                else if (location - (8*i) == dest) { //reached valid destination
                         return true;
                 }
-            }	
+            }
+	    if (location + (8*i) < 64 && location + (8*i) <= dest) { //move Rook up
+                if (board[location + (8*i)] != nullptr && location + (8*i) < dest) { 
+			return false;
+                }
+                else if (location + (8*i) == dest) { 
+                        return true;
+                }
+            }
+		    	
         }
         return false;
     }
@@ -44,23 +46,23 @@ public:
         }
     }
     
-    for (int i = 0; i < 8; ++i) {
-        if ( (location - i) >= leftEdge ) { //checking left side
-            if (board[(location - i)] != nullptr) { //if there is a piece in the way, can't pass through a piece
-                return false;
-            }
-            else if (dest == (location - i)) { //found valid destination
-                return true;
-            }
-        }
-	if ( (location + i) <= rightEdge ) { //checking right side
-            if (board[(location + i)] != nullptr) { //if there is a piece in the way, can't pass through a piece
-                return false;
-            }
-            else if (dest == (location + i)) { //found valid destination
-                return true;
-            }
-        }
+    for (int i = 1; i < 9; ++i) {
+        if ( (location - i) >= leftEdge ) { //move Rook left
+             if (board[(location - i)] != nullptr && location - i > dest) { //if there is a piece before we reach destination
+		return false;
+             }
+             else if ((location - i) == dest) { //reached valid destination
+                 return true;
+             }
+         }
+ 	if ( (location + i) <= rightEdge ) { //move Rook right
+             if (board[(location + i)] != nullptr && location + i < dest) { 
+		return false;
+             }
+             else if ((location + i) == dest) { 
+                 return true;
+             }
+         }
     }
     
     return false;
