@@ -9,24 +9,24 @@ public:
         else return "♙";
     }
     
-    bool canMove(ChessPiece** board, int dest) {    // NOT COMPLETE - FOR REFERENCE ONLY
+    bool canMove(ChessPiece** board, int dest) { 
         dest = trans(dest);
         if (white) {    // For a white pawn:
-            if ((dest == location + 16 && board[location + 16] == nullptr) || 
-                (dest == location + 8 && board[location + 8] == nullptr)) 
-                return true;    // Checks if it can move forward to an empty square
+            if ((7 < location && location < 16 && dest == location + 16 && !board[location + 8] && !board[location + 16]) || // Special first double move
+                (dest == location + 8 && !board[location + 8])) 
+                return true;    // True if it can move forward to an empty square
 
-            if ((dest == location + 7 && board[location + 7] != nullptr && !board[location + 7]->white) || 
-                (dest == location + 9 && board[location + 9] != nullptr && !board[location + 9]->white))
-                return true;    // Checks if it can capture an opponent's piece
+            if ((location % 8 != 0 && (dest == location + 7 && board[location + 7] && !board[location + 7]->white)) || 
+                (location % 8 != 7 && (dest == location + 9 && board[location + 9] && !board[location + 9]->white)))
+                return true;    // True if it can capture an opponent's piece
         } else {    // For a black pawn:
-            if ((dest == location - 16 && board[location - 16] == nullptr) || 
-                (dest == location - 8 && board[location - 8] == nullptr)) 
-                return true;    // Checks if it can move forward to an empty square
+            if ((47 < location && location < 56 && dest == location - 16 && !board[location - 8] && !board[location - 16]) || // Special first double move 
+                (dest == location - 8 && !board[location - 8])) 
+                return true;    // True if it can move forward to an empty square
 
-            if ((dest == location - 7 && board[location - 7] != nullptr && board[location - 7]->white) || 
-                (dest == location - 9 && board[location - 9] != nullptr && board[location - 9]->white))
-                return true;    // Checks if it can capture an opponent's piece
+            if ((location % 8 != 7 && (dest == location - 7 && board[location - 7] && board[location - 7]->white)) || 
+                (location % 8 != 0 && (dest == location - 9 && board[location - 9] && board[location - 9]->white)))
+                return true;    // True if it can capture an opponent's piece
         }
         return false;
     }

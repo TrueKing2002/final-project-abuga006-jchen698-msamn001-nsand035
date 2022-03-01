@@ -28,12 +28,12 @@ int main() {
 
     for (int i = 1; i < 20; i++) {
         cout << "Computer Move " << i << " (White)" << endl;
-        game.setPlayerBlack();
+	game.setPlayerBlack();
         game.computerMove();
+	game.setPlayerWhite();
         game.printBoard();
 
         cout << "Computer Move " << ++i << " (Black)" << endl;
-        game.setPlayerWhite();
         game.computerMove();
         game.printBoard();
     }
