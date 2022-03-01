@@ -21,24 +21,13 @@
 
 
 ## Class Diagram
- [UML class: Lucidchart.pdf](https://github.com/cs100/final-project-abuga006-jchen698-msamn001-nsand035/files/8029443/UML.class.Lucidchart.pdf)
- The ChessGame class is responsible for accepting and handling user input and the interaction with the chess game, and provides all the differenct options the player can choose to make. To interact with the board, ChessGame will make calls to the ChessBoard class which will manage and store the chess board. All the changes to the board will be through calls to this class. Each ChessBoard square will hold a pointer to a ChessPiece object, which itself is an abstract superclass with each type of chess piece being its own instantiable subclass.
+ <img width="820" alt="Screen Shot 2022-02-21 at 9 29 46 PM" src="https://user-images.githubusercontent.com/50130189/156101012-1b241a03-34cd-4607-a310-2542f0fd06af.png">
 
- > ## Phase III
- > You will need to schedule a check-in for the second scrum meeting with a reader (using Calendly). Your entire team must be present. This meeting will occur on week 8 but NOT during lab time.
- > * Before the meeting you should perform a sprint plan like you did in Phase II.
- > * You should also update this README file by adding the following:
- >   * What design pattern(s) did you use? For each pattern you must explain in 4-5 sentences:
- >     * Why did you pick this pattern? And what feature did you implement with it?
- >     * How did the design pattern help you write better code?
- >   * An updated class diagram that reflects the design pattern(s) you used. You may combine multiple design patterns into one diagram if you'd like, but it needs to be clear which portion of the diagram represents which design pattern (either in the diagram or in the description).
- >   * Make sure your README file (and Project board) are up-to-date reflecting the current status of your project. Previous versions of the README file should still be visible through your commit history.
-> 
-> During the meeting with your reader you will discuss: 
- > * How effective your last sprint was (each member should talk about what they did)
- > * Any tasks that did not get completed last sprint, and how you took them into consideration for this sprint
- > * Any bugs you've identified and created issues for during the sprint. Do you plan on fixing them in the next sprint or are they lower priority?
- > * What tasks you are planning for this next sprint.
+ The ChessProgram class is responsible for accepting and handling user input and provides all the differenct options the player can choose to make. Each ChessGame object will contain its own chess game. To interact with the board, ChessGame will make calls to the ChessBoard class which will manage and store the chess board. All the changes to the board will be through calls to this class. Each ChessBoard square will hold a pointer to a ChessPiece object, which itself is an abstract superclass with each type of chess piece being its own instantiable subclass.
+ 
+ The ChessPiece class uses the Strategy design pattern to allow for all chess pieces to share the same exact interface. Each chess piece has two functions that will behave differently depending on what piece it is. This class declares that interface, and each individual chess piece forms its own concrete class that implements its own algorithms for each function in the interface. Thanks to this design pattern, using and storing each chess piece is a lot simpler and intuitive than it would have been if a completely different class for each chess piece was used.
+
+
 
  
  > ## Final deliverable
