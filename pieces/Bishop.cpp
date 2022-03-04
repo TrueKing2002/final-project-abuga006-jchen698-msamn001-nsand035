@@ -18,8 +18,8 @@ public:
 		    return false;
 		}
 	    }
-	    if (black) {
-		if (board[dest]->black) {
+	    if (!white) {
+		if (!board[dest]->white) {
 		    return false;
 		}
 	    }
@@ -75,7 +75,7 @@ public:
 	    }
 	    collisionCheck += diagonalPath; //Iterate to collisionCheck to next immediate diagonal from initial
 	    while (collisionCheck != dest) { //Continue checking diagonally until reaching the destination position
-		if (board[collisionChkeck] != nullptr) { //Check to make sure that there is nothing along the diagonal path from the initial position to the destination
+		if (board[collisionCheck] != nullptr) { //Check to make sure that there is nothing along the diagonal path from the initial position to the destination
 		    return false; //Invalid move since there is a piece along the diagonal path
 		}
 		collisionCheck += diagonalPath; //Iterate to next diagonal position
