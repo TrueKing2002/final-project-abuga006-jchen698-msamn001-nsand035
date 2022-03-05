@@ -34,38 +34,37 @@ public:
     }
 	
     bool validRow(ChessPiece** board, int dest, int location) {
-    int leftEdge = 0;
-    int rightEdge = 0;
+    	int leftEdge = 0;
+    	int rightEdge = 0;
     
-    for (int i = 0; i < 8; ++i) {
-        if ((location - i) % 8 == 0) {
-            leftEdge = location - i;
-        }
-        if ((location + i) % 8 == 7) {
-            rightEdge = location + i;
-        }
-    }
+   	for (int i = 0; i < 8; ++i) {
+     	    if ((location - i) % 8 == 0) {
+            	leftEdge = location - i;
+            }
+            if ((location + i) % 8 == 7) {
+            	rightEdge = location + i;
+            }
+    	}
     
-    for (int i = 1; i < 9; ++i) {
-        if ( (location - i) >= leftEdge ) { //move Rook left
-             if (board[(location - i)] != nullptr && location - i > dest) { //if there is a piece before we reach destination
-		return false;
-             }
-             else if ((location - i) == dest) { //reached valid destination
-                 return true;
-             }
-         }
- 	if ( (location + i) <= rightEdge ) { //move Rook right
-             if (board[(location + i)] != nullptr && location + i < dest) { 
-		return false;
-             }
-             else if ((location + i) == dest) { 
-                 return true;
-             }
-         }
-    }
-    
-    return false;
+    	for (int i = 1; i < 9; ++i) {
+            if ( (location - i) >= leftEdge ) { //move Rook left
+            	if (board[(location - i)] != nullptr && location - i > dest) { //if there is a piece before we reach destination
+		    return false;
+             	}
+             	else if ((location - i) == dest) { //reached valid destination
+                    return true;
+             	}
+            }
+ 	    if ( (location + i) <= rightEdge ) { //move Rook right
+            	if (board[(location + i)] != nullptr && location + i < dest) { 
+		    return false;
+                }
+            	else if ((location + i) == dest) { 
+                    return true;
+             	}
+            }
+    	}
+    	return false;
     }
 
     bool canMove(ChessPiece** board, int dest) {
