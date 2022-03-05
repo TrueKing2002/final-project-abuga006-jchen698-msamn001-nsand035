@@ -28,7 +28,7 @@ void ChessGame::printBoard() {
 }
 
 void ChessGame::computerMove() {
-    srand(time(0));
+    srand(time(0) + randomSeed++);
     int randomLoc = rand() % 64 + 1; 
     int randomDest = rand() % 64 + 1;
     ChessPiece* randomPiece = theBoard->getPiece(randomLoc);
