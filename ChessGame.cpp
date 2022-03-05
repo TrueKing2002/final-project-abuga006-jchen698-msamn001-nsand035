@@ -33,7 +33,7 @@ void ChessGame::computerMove() {
     int randomDest = rand() % 64 + 1;
     ChessPiece* randomPiece = theBoard->getPiece(randomLoc);
 
-    while (!randomPiece || (playerIsWhite && randomPiece->white == true) || (!playerIsWhite && randomPiece->white == false) || (!randomPiece->canMove(theBoard->sendBoard(), randomDest))) { 
+    while (!randomPiece || (playerIsWhite && randomPiece->white == true) || (!playerIsWhite && randomPiece->white == false) || !randomPiece->canMove(theBoard->sendBoard(), randomDest)) { 
     	randomLoc = rand() % 64 + 1;
 	randomDest = rand() % 64 + 1;
 	randomPiece = theBoard->getPiece(randomLoc);
