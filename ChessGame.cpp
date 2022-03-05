@@ -39,5 +39,35 @@ void ChessGame::computerMove() {
 	randomPiece = theBoard->getPiece(randomLoc);
     }                
    
-    move(randomLoc, randomDest);
+    move(randomLoc, randomDest); 
+    cout << "COMPUTER MOVE: ";
+    announceMove(randomLoc, randomDest);
 }    
+
+void ChessGame::announceMove(int l, int d) {
+    announce(l);
+    if (moveLog.top() != 0) cout << "x "; // Only ouputs an 'x' if a piece was captured in the last move
+    announce(d);
+    cout << endl;
+}
+
+void ChessGame::announce(int c) {
+    if (c % 8 == 1) cout << 'a';
+    else if (c % 8 == 2) cout << 'b';
+    else if (c % 8 == 3) cout << 'c';
+    else if (c % 8 == 4) cout << 'd';
+    else if (c % 8 == 5) cout << 'e';
+    else if (c % 8 == 6) cout << 'f';
+    else if (c % 8 == 7) cout << 'g';
+    else cout << 'h';
+
+    if (c < 9) cout << '1';
+    else if (c < 17) cout << '2';
+    else if (c < 25) cout << '3';
+    else if (c < 33) cout << '4';
+    else if (c < 41) cout << '5';
+    else if (c < 49) cout << '6';
+    else if (c < 57) cout << '7';
+    else cout << '8';
+    cout << ' ';
+}

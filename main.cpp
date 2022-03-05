@@ -26,7 +26,7 @@ int main() {
     game.setPlayerBlack();
     game.printBoard();
 
-    for (int i = 1; i < 20; i++) {
+    for (int i = 1; i < 20; i++) { // You can change the loop to run as many times as you want
         cout << "Computer Move " << i << " (White)" << endl;
         game.setPlayerBlack();
         game.computerMove();
