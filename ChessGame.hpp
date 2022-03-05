@@ -10,6 +10,7 @@ class ChessGame {
         bool playerIsWhite = true;
 	stack<int> moveLog;
 	void announce(int);
+	int randomSeed = 0;
     public:
 	ChessGame() {theBoard = new ChessBoard;}
         ~ChessGame() {delete theBoard;}
