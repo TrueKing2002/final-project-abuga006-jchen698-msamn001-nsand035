@@ -9,6 +9,7 @@ class ChessGame {
 	ChessBoard* theBoard;
         bool playerIsWhite = true;
 	stack<int> moveLog;
+	void announce(int);
     public:
 	ChessGame() {theBoard = new ChessBoard;}
         ~ChessGame() {delete theBoard;}
@@ -18,6 +19,7 @@ class ChessGame {
 	int inCheck();
         void printBoard();
 	void computerMove();
+	void announceMove(int, int);
 };
 
 #endif
