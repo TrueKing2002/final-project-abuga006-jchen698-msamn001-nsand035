@@ -57,11 +57,11 @@ void ChessBoard::movePiece(int loc, int dest) {
 
 bool ChessBoard::whiteInCheck() {
     int kingLocation = -1;
-    for (int i = 0; i < 64; i++) 
-        if (board[i] != nullptr && board[i]->white == true && board[i]->id == 6) 
-            kingLocation = board[i]->location;
+    for (int i = 1; i < 65; i++) 
+        if (board[trans(i)] != nullptr && board[trans(i)]->white == true && board[trans(i)]->id == 6) 
+            kingLocation = i;
 
-    if (kingLocation == -1) cout << "\nERROR: NO WHITE KING FOUND\n";
+    if (kingLocation == -1) cout << "\nERROR: NO WHITE KING FOUND\n"; 
 
     for (int i = 0; i < 64; i++) 
         if (board[i] != nullptr && board[i]->white == false && board[i]->canMove(board, kingLocation))
@@ -71,11 +71,11 @@ bool ChessBoard::whiteInCheck() {
 
 bool ChessBoard::blackInCheck() {
     int kingLocation = -1;
-    for (int i = 0; i < 64; i++) 
-        if (board[i] != nullptr && board[i]->white == false && board[i]->id == 6) 
-            kingLocation = board[i]->location;
+    for (int i = 1; i < 65; i++) 
+        if (board[trans(i)] != nullptr && board[trans(i)]->white == false && board[trans(i)]->id == 6) 
+            kingLocation = i; 
 
-    if (kingLocation == -1) cout << "\nERROR: NO BLACK KING FOUND\n";
+    if (kingLocation == -1) cout << "\nERROR: NO BLACK KING FOUND\n"; 
 
     for (int i = 0; i < 64; i++) 
         if (board[i] != nullptr && board[i]->white == true && board[i]->canMove(board, kingLocation))
