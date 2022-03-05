@@ -14,18 +14,34 @@ int main() {
     game.move(13, 29);
     game.printBoard();
 
-    cout << "\nOPPONENT MOVE d7 d5 (52, 36)\n";
-    game.move(52, 36);
+    cout << "\nOPPONENT MOVE f6 a6 (6, 41)\n";
+    game.move(6, 41);
     game.printBoard();
 
-    cout << "\nMOVE b1 c3 (2, 19)\n";
-    game.move(2, 19);
+    cout << "\nMOVE a6 f3 (41, 22)\n";
+    game.move(41, 22);
     game.printBoard();
+
+    cout << "\nMOVE a6 h5 (41, 40) \n";
+    game.move(41, 40);
+    game.printBoard();
+
+    cout << "\nMOVE c3 h6 (3, 48) \n";
+    game.move(3, 48);
+    game.printBoard();
+
+    cout << "\nMOVE d2 d3 (12, 20)\n";
+    game.move(12, 20);
+    game.printBoard();
+
+    cout << "\nMOVE c3 h6 (3, 48) \n";
+    game.move(3, 48);
+    game.printBoard(); 
 
     cout << "\nPRINT BOARD BLACK: \n";
     game.setPlayerBlack();
     game.printBoard();
-
+/*
     for (int i = 1; i < 20; i++) {
         cout << "Computer Move " << i << " (White)" << endl;
 	game.setPlayerBlack();
@@ -37,6 +53,6 @@ int main() {
         game.computerMove();
         game.printBoard();
     }
-
+*/
     return 1;
 }
