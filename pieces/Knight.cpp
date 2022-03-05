@@ -9,5 +9,5 @@ public:
         else return "♘";
     }
     
-    bool canMove(ChessPiece** board, int dest) {return true;}
+    bool canMove(ChessPiece** board, int dest) {return false;}
 };
