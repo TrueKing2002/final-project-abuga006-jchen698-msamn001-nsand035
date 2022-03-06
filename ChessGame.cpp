@@ -71,3 +71,16 @@ void ChessGame::announce(int c) {
     else cout << '8';
     cout << ' ';
 }
+
+bool ChessGame::attemptMove(string coords) {
+    if (coords.at(0) >= 'a' && coords.at(0) <= 'h' && coords.at(3) >= 'a' && coords.at(3) <= 'h' && coords.at(1) >= '1' && coords.at(1) <= '8' && coords.at(4) >= '1' && coords.at(4) <= '8') {
+        int icol = coords.at(0) - 96;
+        int irow = coords.at(1) - '0';
+        int fcol = coords.at(3) - 96;
+        int frow = coords.at(4) - '0';
+        int location = icol + (8*(irow - 1));
+        int dest = fcol + (8*(frow - 1));
+        return move(location, dest);
+    }
+    return false;
+}

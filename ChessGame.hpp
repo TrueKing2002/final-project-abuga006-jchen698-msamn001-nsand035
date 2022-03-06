@@ -3,6 +3,7 @@
 
 #include "board/ChessBoard.cpp"
 #include <stack>
+#include <string>
 
 class ChessGame {
     private:
@@ -21,6 +22,7 @@ class ChessGame {
         void printBoard();
 	void computerMove();
 	void announceMove(int, int);
+	bool attemptMove(string);
 };
 
 #endif
