@@ -79,7 +79,8 @@ public:
 		collisionCheck += diagonalPath; //Iterate to next diagonal position
 	    }
 	    return true; //This is a valid move since there were no obstacles found along the diagonal path between the bishop and the destination
-	}
+	}	
 
-	return false;}
+	return false; //Invalid move since it is not along a diagonal path
+    }
 };
