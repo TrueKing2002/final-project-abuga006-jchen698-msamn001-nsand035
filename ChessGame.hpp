@@ -15,6 +15,7 @@ class ChessGame {
 void printMenu();
 int loadMenu();
 int chooseColor();
+int PlayerComputer();
 
 
 #endif

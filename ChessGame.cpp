@@ -65,3 +65,22 @@ int chooseColor() {
 	}
 	return colorInt;
 }
+
+// ask for vs player or computer
+int PlayerComputer() {
+	string vs = " ";
+	int vsInt = 0;
+	cout << "Would you like to play vs another player or computer?\n";
+	cout << "Choose 1 to vs another player, or 2 to vs the computer\n";
+	while (vs != "1" && vs != "2") {
+		cin >> vs;
+		cout << "Please enter 1 to vs another player or 2 to vs the computer: ";
+	}
+	if (vs == "1") {
+		vsInt = 1;
+	}
+	else {
+		vsInt = 2;
+	}
+	return colorInt;
+}
