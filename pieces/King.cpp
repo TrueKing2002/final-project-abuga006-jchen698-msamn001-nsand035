@@ -16,31 +16,38 @@ class King : public ChessPiece {
     
     bool LeftRight(ChessPiece** board, int dest, int location) {
 		// check right and left (+1/-1)
-		if ((dest == location + 1) || (dest == location - 1)) {
+		if ((dest == location + 1 && location % 8 != 7) || (dest == location - 1 && location % 8 != 0)) {
 			return true;
 		}
 		return false;
 	}
 
 	bool Diagonal(ChessPiece** board, int dest, int location) {
-		// up right
-		if (dest == location + 9) {
+		// right side
+		if (location % 8 != 7) {
+			// up right
+			if (dest == location + 9) {
+				return true;
+			}
+
+			// down right
+			if (dest == location - 7) {
 			return true;
+			}
 		}
 
-		// up left
-		else if (dest == location + 7) {
-			return true;
-		}
+		// left side
+		if (location % 8 != 0) {
+			//up left
+			if (dest == location + 7) {
+				return true;
+			}
 
-		// down right
-		else if (dest == location - 7) {
-			return true;
-		}
+			// down left
+			if (dest == location - 9) {
+				return true;
+			}
 
-		// down left
-		else if (dest == location - 9) {
-			return true;
 		}
 		return false;
 	}
