@@ -83,6 +83,27 @@ bool ChessBoard::blackInCheck() {
     return false;
 }
 
+bool ChessBoard::blackMate() {
+    int kingLocation = -1;
+    for (int i = 1; i < 65; i++)
+        if (board[trans(i)] != nullptr && board[trans(i)]->white == false && board[trans(i)]->id == 6)
+            kingLocation = i;
+
+    if (kingLocation == -1) cout << "\nERROR: NO BLACK KING FOUND\n";
+
+    if (blackInCheck()) {
+	for (i = kingLocation - 9; i < kingLocation + 9; i++) {
+	    if (board[kingLocation]->canMove(board, i)) {
+		return false;
+	    }
+	    else {
+		undo();
+	    }
+	}
+    }
+    return true;
+}	    
+
 void ChessBoard::printBoardWhite() {
     int row = 8;
     for (int i = 63; i >= 0; i--) {
