@@ -2,6 +2,8 @@
 
 bool ChessGame::move(int l, int d) {	// Assume l and d are valid board indices
     if (theBoard->getPiece(l) && theBoard->getPiece(l)->canMove(theBoard->sendBoard(), d)) { 
+	if (theBoard->getPiece(l)->white != playerIsWhite) return false; // Player can only move piece of their color
+ 
         moveLog.push(l);
         moveLog.push(d);
         if (theBoard->getPiece(d)) moveLog.push(theBoard->getPiece(d)->id);
@@ -10,7 +12,7 @@ bool ChessGame::move(int l, int d) {	// Assume l and d are valid board indices
         theBoard->movePiece(l, d);
         return true;
     }
-    cout << "Invalid Move!" << endl;
+    //cout << "Invalid Move!" << endl;
     return false;
 }
 
@@ -23,8 +25,13 @@ int ChessGame::inCheck() {
 }
 
 void ChessGame::printBoard() {
-	if (playerIsWhite) theBoard->printBoardWhite();
-        else theBoard->printBoardBlack();
+    if (playerIsWhite) theBoard->printBoardWhite();
+    else theBoard->printBoardBlack();
+}
+
+void ChessGame::swapPlayer() {
+    if (playerIsWhite) setPlayerBlack();
+    else setPlayerWhite();
 }
 
 void ChessGame::computerMove() {
@@ -33,13 +40,14 @@ void ChessGame::computerMove() {
     int randomDest = rand() % 64 + 1;
     ChessPiece* randomPiece = theBoard->getPiece(randomLoc);
 
-    while (!randomPiece || (playerIsWhite && randomPiece->white == true) || (!playerIsWhite && randomPiece->white == false) || !randomPiece->canMove(theBoard->sendBoard(), randomDest)) { 
+    while (!randomPiece || playerIsWhite == randomPiece->white || !randomPiece->canMove(theBoard->sendBoard(), randomDest)) { 
     	randomLoc = rand() % 64 + 1;
 	randomDest = rand() % 64 + 1;
 	randomPiece = theBoard->getPiece(randomLoc);
     }                
-   
-    move(randomLoc, randomDest); 
+    swapPlayer();
+    move(randomLoc, randomDest);
+    swapPlayer(); 
     cout << "COMPUTER MOVE: ";
     announceMove(randomLoc, randomDest);
 }    
@@ -72,15 +80,42 @@ void ChessGame::announce(int c) {
     cout << ' ';
 }
 
-bool ChessGame::attemptMove(string coords) {
-    if (coords.at(0) >= 'a' && coords.at(0) <= 'h' && coords.at(3) >= 'a' && coords.at(3) <= 'h' && coords.at(1) >= '1' && coords.at(1) <= '8' && coords.at(4) >= '1' && coords.at(4) <= '8') {
-        int icol = coords.at(0) - 96;
-        int irow = coords.at(1) - '0';
-        int fcol = coords.at(3) - 96;
-        int frow = coords.at(4) - '0';
-        int location = icol + (8*(irow - 1));
-        int dest = fcol + (8*(frow - 1));
-        return move(location, dest);
+void ChessGame::undoMove() { // Undos two moves so player can move again
+    if (!moveLog.empty()) {
+        swapPlayer();
+        undo();
+        swapPlayer();
+        undo();
+	cout << "UNDID MOVES" << endl;
     }
-    return false;
+}
+
+void ChessGame::undo() {
+    ChessPiece* tempPiece = retrievePiece(moveLog.top());
+    moveLog.pop();
+    int tempLoc = moveLog.top();
+    moveLog.pop();
+    int tempDest = moveLog.top();
+    moveLog.pop();
+    theBoard->movePiece(tempLoc, tempDest); // Moves last piece back to old location
+
+    tempLoc = trans(tempLoc);
+    theBoard->sendBoard()[tempLoc] = tempPiece; // Replaces a captured piece if there was one
+    if (tempPiece) {
+        tempPiece->location = tempLoc;
+        tempPiece->white = !playerIsWhite;
+    }
+    //if (playerIsWhite) cout << "UNDID WHITE MOVE" << endl;
+    //else cout << "UNDID BLACK MOVE" << endl;
+}
+
+ChessPiece* ChessGame::retrievePiece(int id) {
+    if (id == 0) return nullptr;
+    if (id == 1) return new Pawn;
+    if (id == 2) return new Knight;
+    if (id == 3) return new Bishop;
+    if (id == 4) return new Rook;
+    if (id == 5) return new Queen;
+    if (id == 6) return new King;
+    cout << "ERROR: NO PIECE FOUND" << endl;
 }

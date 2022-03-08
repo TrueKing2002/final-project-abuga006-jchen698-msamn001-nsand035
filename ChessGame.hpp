@@ -3,7 +3,6 @@
 
 #include "board/ChessBoard.cpp"
 #include <stack>
-#include <string>
 
 class ChessGame {
     private:
@@ -12,17 +11,22 @@ class ChessGame {
 	stack<int> moveLog;
 	void announce(int);
 	int randomSeed = 0;
+	ChessPiece* retrievePiece(int);
+	void undo();
     public:
 	ChessGame() {theBoard = new ChessBoard;}
         ~ChessGame() {delete theBoard;}
+	bool currentPlayer = 1;
+	bool opponentIsComputer = true;
         void setPlayerWhite() {playerIsWhite = true;}
         void setPlayerBlack() {playerIsWhite = false;}
+	void swapPlayer();
         bool move(int, int);
 	int inCheck();
         void printBoard();
 	void computerMove();
 	void announceMove(int, int);
-	bool attemptMove(string);
+	void undoMove();
 };
 
 #endif
