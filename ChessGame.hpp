@@ -14,8 +14,11 @@ class ChessGame {
     public:
 	ChessGame() {theBoard = new ChessBoard;}
         ~ChessGame() {delete theBoard;}
+	bool currentPlayer = 1;
+	bool opponentIsComputer = true;
         void setPlayerWhite() {playerIsWhite = true;}
         void setPlayerBlack() {playerIsWhite = false;}
+	void swapPlayer();
         bool move(int, int);
 	int inCheck();
         void printBoard();

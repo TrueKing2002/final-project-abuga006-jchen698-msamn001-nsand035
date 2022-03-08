@@ -2,6 +2,8 @@
 
 bool ChessGame::move(int l, int d) {	// Assume l and d are valid board indices
     if (theBoard->getPiece(l) && theBoard->getPiece(l)->canMove(theBoard->sendBoard(), d)) { 
+	if (theBoard->getPiece(l)->white != playerIsWhite) return false; // Player can only move piece of their color
+ 
         moveLog.push(l);
         moveLog.push(d);
         if (theBoard->getPiece(d)) moveLog.push(theBoard->getPiece(d)->id);
@@ -10,7 +12,7 @@ bool ChessGame::move(int l, int d) {	// Assume l and d are valid board indices
         theBoard->movePiece(l, d);
         return true;
     }
-    cout << "Invalid Move!" << endl;
+    //cout << "Invalid Move!" << endl;
     return false;
 }
 
@@ -23,8 +25,13 @@ int ChessGame::inCheck() {
 }
 
 void ChessGame::printBoard() {
-	if (playerIsWhite) theBoard->printBoardWhite();
-        else theBoard->printBoardBlack();
+    if (playerIsWhite) theBoard->printBoardWhite();
+    else theBoard->printBoardBlack();
+}
+
+void ChessGame::swapPlayer() {
+    if (playerIsWhite) setPlayerBlack();
+    else setPlayerWhite();
 }
 
 void ChessGame::computerMove() {
@@ -33,13 +40,14 @@ void ChessGame::computerMove() {
     int randomDest = rand() % 64 + 1;
     ChessPiece* randomPiece = theBoard->getPiece(randomLoc);
 
-    while (!randomPiece || (playerIsWhite && randomPiece->white == true) || (!playerIsWhite && randomPiece->white == false) || !randomPiece->canMove(theBoard->sendBoard(), randomDest)) { 
+    while (!randomPiece || playerIsWhite == randomPiece->white || !randomPiece->canMove(theBoard->sendBoard(), randomDest)) { 
     	randomLoc = rand() % 64 + 1;
 	randomDest = rand() % 64 + 1;
 	randomPiece = theBoard->getPiece(randomLoc);
     }                
-   
-    move(randomLoc, randomDest); 
+    swapPlayer();
+    move(randomLoc, randomDest);
+    swapPlayer(); 
     cout << "COMPUTER MOVE: ";
     announceMove(randomLoc, randomDest);
 }    
