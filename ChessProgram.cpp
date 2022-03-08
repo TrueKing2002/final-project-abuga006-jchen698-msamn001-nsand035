@@ -13,13 +13,25 @@ ChessProgram::~ChessProgram() {
 void ChessProgram::start() {
     string input = " ";
 
-    while(input.at(0) != 'q') {
+    while(input.at(0) != 'q') { // Currently q quits, maybe change to o for more options
         currentGame->printBoard();
         input = " ";
 
         while(input.size() < 1 || (input.at(0) != 'q' && !attemptMove(input))) {
             cout << "Input move: ";
             getline(cin, input);
+	    if (input.size() == 1) {
+                if (input.at(0) == 'u') { // u undos your move
+                    currentGame->undoMove();
+                    currentGame->printBoard();
+                }
+                if (input.at(0) == 'r') { // r moves a random piece for you
+                    currentGame->swapPlayer();
+                    currentGame->computerMove();
+                    currentGame->swapPlayer();
+                    break;
+                }
+            }
         }
         if (input.at(0) != 'q') currentGame->computerMove();
     }

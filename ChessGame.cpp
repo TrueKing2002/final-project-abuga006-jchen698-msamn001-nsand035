@@ -79,3 +79,43 @@ void ChessGame::announce(int c) {
     else cout << '8';
     cout << ' ';
 }
+
+void ChessGame::undoMove() { // Undos two moves so player can move again
+    if (!moveLog.empty()) {
+        swapPlayer();
+        undo();
+        swapPlayer();
+        undo();
+	cout << "UNDID MOVES" << endl;
+    }
+}
+
+void ChessGame::undo() {
+    ChessPiece* tempPiece = retrievePiece(moveLog.top());
+    moveLog.pop();
+    int tempLoc = moveLog.top();
+    moveLog.pop();
+    int tempDest = moveLog.top();
+    moveLog.pop();
+    theBoard->movePiece(tempLoc, tempDest); // Moves last piece back to old location
+
+    tempLoc = trans(tempLoc);
+    theBoard->sendBoard()[tempLoc] = tempPiece; // Replaces a captured piece if there was one
+    if (tempPiece) {
+        tempPiece->location = tempLoc;
+        tempPiece->white = !playerIsWhite;
+    }
+    //if (playerIsWhite) cout << "UNDID WHITE MOVE" << endl;
+    //else cout << "UNDID BLACK MOVE" << endl;
+}
+
+ChessPiece* ChessGame::retrievePiece(int id) {
+    if (id == 0) return nullptr;
+    if (id == 1) return new Pawn;
+    if (id == 2) return new Knight;
+    if (id == 3) return new Bishop;
+    if (id == 4) return new Rook;
+    if (id == 5) return new Queen;
+    if (id == 6) return new King;
+    cout << "ERROR: NO PIECE FOUND" << endl;
+}
