@@ -36,3 +36,21 @@ void ChessProgram::start() {
         if (input.at(0) != 'q') currentGame->computerMove();
     }
 }
+
+bool ChessProgram::attemptMove(string coords) {
+    if (coords.length() < 5) return false;
+    if (coords.at(0) >= 'a' && coords.at(0) <= 'h' && coords.at(3) >= 'a' && coords.at(3) <= 'h' && coords.at(1) >= '1' && coords.at(1) <= '8' && coords.at(4) >= '1' && coords.at(4) <= '8') {
+         int icol = coords.at(0) - 96;
+         int irow = coords.at(1) - '0';
+         int fcol = coords.at(3) - 96;
+         int frow = coords.at(4) - '0';
+         int location = icol + (8*(irow - 1));
+         int dest = fcol + (8*(frow - 1));
+         if (currentGame->move(location, dest)) {
+	     cout << "YOUR MOVE: ";
+	     currentGame->announceMove(location, dest);
+	     return true;
+	 }
+     }
+     return false;
+}
