@@ -109,23 +109,24 @@ void ChessGame::undo() {
     //else cout << "UNDID BLACK MOVE" << endl;
 }
 
-bool ChessBoard::blackMate() {
+bool ChessGame::blackMate() {
     int kingLocation = -1;
-    for (int i = 1; i < 65; i++)
-        if (board[trans(i)] != nullptr && board[trans(i)]->white == false && board[trans(i)]->id == 6)
+    for (int i = 1; i < 65; i++) {
+        if (theBoard->getPiece(i) != nullptr && theBoard->getPiece(i)->white == false && theBoard->getPiece(i)->id == 6) {
             kingLocation = i;
+	}
+    }
 
-    if (kingLocation == -1) cout << "\nERROR: NO BLACK KING FOUND\n";
+    if (kingLocation == -1) {cout << "\nERROR: NO BLACK KING FOUND\n";}
 
-    if (blackInCheck()) {
-	for (i = kingLocation - 9; i < kingLocation + 9; i++) {
-	    if (board[kingLocation]->canMove(board, i)) {
-		if (blackInCheck()) {
-		    undo();
-		}
-		else {
-		    return false;
-		}
+    if (theBoard->blackInCheck()) {
+	for (int i = kingLocation - 9; i < kingLocation + 9; i++) {
+	    move(kingLocation, i);
+	    if (theBoard->blackInCheck()) {
+	        undo();
+	    }
+	    else {
+	        return false;
 	    }
 	}
     }
