@@ -11,6 +11,8 @@ class ChessGame {
 	stack<int> moveLog;
 	void announce(int);
 	int randomSeed = 0;
+	ChessPiece* retrievePiece(int);
+	void undo();
     public:
 	ChessGame() {theBoard = new ChessBoard;}
         ~ChessGame() {delete theBoard;}
@@ -24,6 +26,7 @@ class ChessGame {
         void printBoard();
 	void computerMove();
 	void announceMove(int, int);
+	void undoMove();
 };
 
 #endif
