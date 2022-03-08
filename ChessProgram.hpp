@@ -3,6 +3,7 @@
 
 #include "ChessGame.cpp"
 #include <vector>
+#include <string>
 
 class ChessProgram {
     private:
@@ -13,6 +14,7 @@ class ChessProgram {
         ChessProgram();
         ~ChessProgram();
         void start();
+	bool attemptMove(string);
 };
 
 #endif
