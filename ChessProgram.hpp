@@ -15,4 +15,10 @@ class ChessProgram {
         void start();
 };
 
+// functions
+void printMenu();
+int loadMenu();
+int chooseColor();
+int PlayerComputer();
+
 #endif
