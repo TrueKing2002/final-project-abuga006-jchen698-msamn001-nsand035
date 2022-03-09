@@ -9,6 +9,7 @@ class ChessProgram {
         vector<ChessGame*> games;
         ChessGame* currentGame;
         bool attemptMove(string);
+	ChessGame* selectGame(int);
     public:
         ChessProgram();
         ~ChessProgram();
