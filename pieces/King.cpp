@@ -54,7 +54,7 @@ public:
     return false;
     }
 
-    bool canMove(ChessPiece** board, int dest, int location) {
+    bool canMove(ChessPiece** board, int dest) {
         dest = trans(dest);
 
 	if (board[dest] != nullptr) {
