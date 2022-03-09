@@ -66,3 +66,10 @@ bool ChessProgram::attemptMove(string coords) {
      }
      return false;
 }
+
+ChessGame* ChessProgram::selectGame(int i) {
+     if (games.empty() || i < 0 || i >= games.size()) {
+	return nullptr;
+     }
+     return games.at(i);
+}
