@@ -176,12 +176,9 @@ bool ChessGame::blackMate() {
 
 bool ChessGame::canPromote() {
     for (int i = 1; i < 65; i++) {
-	int row;
-	if (i % 8 == 0) {
-	    row = i / 8;
-	}
-	else {
-	    row = i / 8 + 1;
+	int row = i / 8;
+	if (i % 8 != 0) {
+	    row += 1;
 	}
 	if (theBoard->getPiece(i) && theBoard->getPiece(i)->id == 1 && (row == 1 || row == 8)) {
 	    return true;
@@ -191,9 +188,19 @@ bool ChessGame::canPromote() {
 }
 
 void ChessGame::promotePawn(int pieceType) {
+    ChessPiece* tempPiece = retrievePiece(pieceType);
     for (int l = 1; l < 65; l++) {
 	if (theBoard->getPiece(l)->id == 1 && canPromote()) {
-	    theBoard->sendBoard()[l] = retrievePiece(pieceType);
+	    bool color = true;
+	    if (!theBoard->getPiece(1)->white) {
+		color = false;
+	    }
+	    l = trans(l);
+	    theBoard->sendBoard()[l] = tempPiece;
+	    if (tempPiece) {
+		tempPiece->location = l;
+		tempPiece->white = color;
+	    }
 	}
     }
 }

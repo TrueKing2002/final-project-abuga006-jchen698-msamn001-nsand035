@@ -32,13 +32,12 @@ void ChessProgram::start() {
                     break;
                 }
             }
-        }
+	}
 	if (currentGame->canPromote()) {
 	    cout << "Input Promotion: \n2 = knight\n3 = bishop\n4 = rook\n5 = queen\n";
 	    int userInput;
 	    cin >> userInput;
 	    currentGame->promotePawn(userInput);
-	    currentGame->printBoard();
 	}
 	if (currentGame->announceMate()) input = "q";
         else if (input.at(0) != 'q') {
