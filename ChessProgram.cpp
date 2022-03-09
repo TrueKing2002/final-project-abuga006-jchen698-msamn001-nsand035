@@ -38,6 +38,7 @@ void ChessProgram::start() {
 	    int userInput;
 	    cin >> userInput;
 	    currentGame->promotePawn(userInput);
+	    currentGame->printBoard();
 	}
 	if (currentGame->announceMate()) input = "q";
         else if (input.at(0) != 'q') {
