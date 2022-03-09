@@ -12,21 +12,27 @@ class ChessGame {
 	void announce(int);
 	int randomSeed = 0;
 	ChessPiece* retrievePiece(int);
-	void undo();
+	bool whiteMate();
+	bool blackMate();
     public:
 	ChessGame() {theBoard = new ChessBoard;}
         ~ChessGame() {delete theBoard;}
 	bool currentPlayer = 1;
 	bool opponentIsComputer = true;
+	bool sameColor(int);
         void setPlayerWhite() {playerIsWhite = true;}
         void setPlayerBlack() {playerIsWhite = false;}
 	void swapPlayer();
         bool move(int, int);
-	int inCheck();
         void printBoard();
 	void computerMove();
 	void announceMove(int, int);
-	void undoMove();
+	void undoMoves();
+	void undo();
+	bool playerInCheck();
+	bool playerInMate();
+	void announceCheck();
+	bool announceMate();
 };
 
 #endif
