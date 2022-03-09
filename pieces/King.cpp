@@ -15,6 +15,14 @@ public:
 	    return true;
 	}
 	return false;
+    }
+
+    bool LeftRight(ChessPiece** board, int dest, int location) {
+        // check right and left (+1/-1)
+        if ((dest == location + 1 && location % 8 != 7) || (dest == location - 1 && location % 8 != 0)) {
+			return true;
+		}
+		return false;
     }   
 
     bool Diagonal(ChessPiece** board, int dest, int location) { 
