@@ -10,6 +10,7 @@ class ChessProgram {
         ChessGame* currentGame;
         bool attemptMove(string);
 	ChessGame* selectGame(int);
+	void startGame();
     public:
         ChessProgram();
         ~ChessProgram();

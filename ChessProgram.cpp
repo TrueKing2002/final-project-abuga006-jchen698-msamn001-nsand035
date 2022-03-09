@@ -10,7 +10,7 @@ ChessProgram::~ChessProgram() {
     games.clear();
 }
 
-void ChessProgram::start() {
+void ChessProgram::startGame() {
     string input = " ";
     //currentGame->swapPlayer(); // Uncomment to start as black
     while(input.at(0) != 'q') { // Currently q quits, maybe change to o for more options
@@ -72,4 +72,8 @@ ChessGame* ChessProgram::selectGame(int i) {
 	return nullptr;
      }
      return games.at(i);
+}
+
+void ChessProgram::start() {
+	startGame();
 }
