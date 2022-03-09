@@ -27,6 +27,7 @@ class ChessGame {
 	void computerMove();
 	void announceMove(int, int);
 	void undoMove();
+	bool blackMate();
 };
 
 #endif
