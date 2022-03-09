@@ -12,7 +12,7 @@ ChessProgram::~ChessProgram() {
 
 void ChessProgram::start() {
     string input = " ";
-
+    //currentGame->swapPlayer(); // Uncomment to start as black
     while(input.at(0) != 'q') { // Currently q quits, maybe change to o for more options
         currentGame->printBoard();
         input = " ";
@@ -22,7 +22,7 @@ void ChessProgram::start() {
             getline(cin, input);
 	    if (input.size() == 1) {
                 if (input.at(0) == 'u') { // u undos your move
-                    currentGame->undoMove();
+                    currentGame->undoMoves();
                     currentGame->printBoard();
                 }
                 if (input.at(0) == 'r') { // r moves a random piece for you
@@ -33,7 +33,15 @@ void ChessProgram::start() {
                 }
             }
         }
-        if (input.at(0) != 'q') currentGame->computerMove();
+	if (currentGame->announceMate()) input = "q";
+        else if (input.at(0) != 'q') {
+	    currentGame->announceCheck();
+	    currentGame->computerMove();
+
+	    if (currentGame->announceMate()) input = "q";
+	    else currentGame->announceCheck();
+	}
+	if (input == "q") cout << "Good game!" << endl;
     }
 }
 
@@ -46,7 +54,11 @@ bool ChessProgram::attemptMove(string coords) {
          int frow = coords.at(4) - '0';
          int location = icol + (8*(irow - 1));
          int dest = fcol + (8*(frow - 1));
-         if (currentGame->move(location, dest)) {
+         if (currentGame->sameColor(location) && currentGame->move(location, dest)) {
+	     if (currentGame->playerInCheck()) {
+		currentGame->undo();
+		return false;
+	     }
 	     cout << "YOUR MOVE: ";
 	     currentGame->announceMove(location, dest);
 	     return true;
