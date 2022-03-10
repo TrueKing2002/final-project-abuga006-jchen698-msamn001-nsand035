@@ -232,6 +232,7 @@ void ChessGame::promotePawn(int pieceType) {
 	    if (!theBoard->getPiece(l)->white) { //Check if the piece is white, if it isn't, then set color to false (black)
 		color = false;
 	    } 
+  	    delete theBoard->getPiece(l);
 	    l = trans(l);
 	    theBoard->sendBoard()[l] = tempPiece; //Replace the piece at that index to the promoted piece
 	    tempPiece->location = l; //Set the promoted piece's correct location
