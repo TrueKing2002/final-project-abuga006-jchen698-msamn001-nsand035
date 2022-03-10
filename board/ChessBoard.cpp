@@ -61,7 +61,10 @@ bool ChessBoard::whiteInCheck() {
         if (board[trans(i)] != nullptr && board[trans(i)]->white == true && board[trans(i)]->id == 6) 
             kingLocation = i;
 
-    if (kingLocation == -1) cout << "\nERROR: NO WHITE KING FOUND\n"; 
+    if (kingLocation == -1) {
+	cout << "ERROR: NO WHITE KING FOUND" << endl;
+	return true;
+    }
 
     for (int i = 0; i < 64; i++) 
         if (board[i] != nullptr && board[i]->white == false && board[i]->canMove(board, kingLocation))
@@ -75,7 +78,10 @@ bool ChessBoard::blackInCheck() {
         if (board[trans(i)] != nullptr && board[trans(i)]->white == false && board[trans(i)]->id == 6) 
             kingLocation = i; 
 
-    if (kingLocation == -1) cout << "\nERROR: NO BLACK KING FOUND\n"; 
+    if (kingLocation == -1) {
+	cout << "ERROR: NO BLACK KING FOUND" << endl;
+	return true;
+    } 
 
     for (int i = 0; i < 64; i++) 
         if (board[i] != nullptr && board[i]->white == true && board[i]->canMove(board, kingLocation))

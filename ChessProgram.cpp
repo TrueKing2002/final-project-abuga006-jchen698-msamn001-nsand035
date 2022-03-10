@@ -1,9 +1,6 @@
 #include "ChessProgram.hpp"
 
-ChessProgram::ChessProgram() {
-    currentGame = new ChessGame;
-    games.push_back(currentGame);
-}
+ChessProgram::ChessProgram() {}
 
 ChessProgram::~ChessProgram() {
     for (auto g : games) delete g;
@@ -11,21 +8,21 @@ ChessProgram::~ChessProgram() {
 }
 
 void ChessProgram::startGame() {
-    string input = " ";
+    string in = " ";
     //currentGame->swapPlayer(); // Uncomment to start as black
-    while(input.at(0) != 'q') { // Currently q quits, maybe change to o for more options
+    while(in.at(0) != 'q') { // Currently q quits, maybe change to o for more options
         currentGame->printBoard();
-        input = " ";
+        in = " ";
 
-        while(input.size() < 1 || (input.at(0) != 'q' && !attemptMove(input))) {
+        while(in.size() < 1 || (in.at(0) != 'q' && !attemptMove(in))) {
             cout << "Input move: ";
-            getline(cin, input);
-	    if (input.size() == 1) {
-                if (input.at(0) == 'u') { // u undos your move
+            getline(cin, in);
+            if (in.size() == 1) {
+                if (in.at(0) == 'u') { // u undos your move
                     currentGame->undoMoves();
                     currentGame->printBoard();
                 }
-                if (input.at(0) == 'r') { // r moves a random piece for you
+                if (in.at(0) == 'r') { // r moves a random piece for you
                     currentGame->swapPlayer();
                     currentGame->computerMove();
                     currentGame->swapPlayer();
@@ -33,23 +30,26 @@ void ChessProgram::startGame() {
                 }
             }
         }
-	if (currentGame->canPromote()) { //Checks if there is a pawn that is going to be promoted
-	    cout << "Input Promotion: \n2 = knight\n3 = bishop\n4 = rook\n5 = queen\n"; //Output instructions for pawn promotion
-	    int userInput; 
-	    cin >> userInput; //get user input
-	    currentGame->promotePawn(userInput); //promote the pawn
-	    getline(cin, input); //Catches whitelines
-	    input = " ";
-	}
-	if (currentGame->announceMate()) input = "q";
-        else if (input.at(0) != 'q') {
-	    currentGame->announceCheck();
-	    currentGame->computerMove();
 
-	    if (currentGame->announceMate()) input = "q";
-	    else currentGame->announceCheck();
-	}
-	if (input == "q") cout << "Good game!" << endl;
+        if (currentGame->canPromote()) { //Checks if there is a pawn that is going to be promoted
+            cout << "Input Promotion: \n2 = knight\n3 = bishop\n4 = rook\n5 = queen\n"; //Output instructions for pawn promotion
+            int userInput; 
+            cin >> userInput; //get user input
+            currentGame->promotePawn(userInput); //promote the pawn
+            getline(cin, in); //Catches whitelines
+            in = " ";
+        }
+
+        if (currentGame->announceMate()) in = "q";
+        else if (in.at(0) != 'q') {
+             currentGame->announceCheck();
+
+             if (currentGame->opponentIsComputer) currentGame->computerMove();
+             else currentGame->swapPlayer();
+
+             if (currentGame->announceMate()) in = "q";
+             else currentGame->announceCheck();
+        }
     }
 }
 
@@ -92,63 +92,53 @@ void ChessProgram::start() {
 			if (PlayerComputer() == 1)
 			{
 				currentGame->opponentIsComputer = false;  //add this
-				cout << "You are going to play another person.\n" << "Do you want to be white or black?\n";
-				 // call chooseColor() and get color from user
-				 // they picked white
-				if (chooseColor() == 1) {
-					cout << "you are white." << endl;
-					currentGame->setPlayerWhite();  //add this
-				}
-				 // they picked black
-				else {
-					cout << "you are black." << endl;
-					currentGame->setPlayerBlack();  // same for black
-				}
+				cout << "You are going to play another person.\n" << endl;
 			}
 			// vs computer (option 2)
 			else {
-				cout << "You are going to play vs the computer.\n" << "Do you want to be white or black?\n";
-				//  call chooseColor() and get color from user
-				//  they picked white
-				if (chooseColor() == 1) {
-					cout << "you are white." << endl;
-					currentGame->setPlayerWhite();
-				}
-				// they picked black
-				else {
-					cout << "you are black." << endl;
-					currentGame->setPlayerBlack();
-				}
+				cout << "You are going to play vs the computer.\n" << endl;
 			}
+			
+			// call chooseColor() and get color from user
+			if (chooseColor() == 1) {
+                               	cout << "You are white." << endl;
+                                currentGame->setPlayerWhite();
+			} else {
+                                cout << "You are black." << endl;
+                                currentGame->setPlayerBlack();
+                        }
+
+			getline(cin,input);
 			games.push_back(currentGame);
 			startGame(); //  add this
 		}
 		else if (menuOption == 2) {
-			cout << "load game";
+			//cout << "load game" << endl;
 			if (games.size() == 0) {
-				cout << "Error No games started";
+				cout << "Error: No games started!" << endl;
 			}
 			else {
 				currentGame = nullptr;
 				while (currentGame == nullptr) {
 					cout << "Please select a game from 1 to " << games.size() << ": ";
 					cin >> input;
-					currentGame = selectGame(stoi(input) - 1);
-					cout << endl;
+					if (input > "0" && input <= to_string(games.size()))
+						currentGame = selectGame(stoi(input) - 1);
 				}
+				getline(cin,input);
 				startGame();
 			}
 		}
 
 	}
-	cout << "quit";
+	cout << "Good bye!" << endl;
 }
 
 void ChessProgram::printMenu()
 {
 	cout << "\n********************************************************************\n";
 	cout << "**                                                                **\n";
-	cout << "**             Welcome to the Chess menu                          **\n";
+	cout << "**                  Welcome to the Chess menu                     **\n";
 	cout << "**                                                                **\n";
 	cout << "********************************************************************\n";
 	cout << "** Please select from the following choices:                      **\n";
@@ -187,10 +177,10 @@ int ChessProgram::chooseColor() {
 	string color = " ";
 	int colorInt = 0;
 	cout << "Would you like to play as white or black?\n";
-	cout << "Choose 1 for white, or 2 for black\n";
+	//cout << "Choose 1 for white, or 2 for black\n";
 	while (color != "1" && color != "2") {
-		cin >> color;
 		cout << "Please enter 1 for white or 2 for black: ";
+		cin >> color;
 	}
 	if (color == "1") {
 		colorInt = 1;
@@ -205,10 +195,10 @@ int ChessProgram::PlayerComputer() {
 	string vs = " ";
 	int vsInt = 0;
 	cout << "Would you like to play vs another player or computer?\n";
-	cout << "Choose 1 to vs another player, or 2 to vs the computer\n";
+	//cout << "Choose 1 to vs another player, or 2 to vs the computer\n";
 	while (vs != "1" && vs != "2") {
-		cin >> vs;
 		cout << "Please enter 1 to vs another player or 2 to vs the computer: ";
+		cin >> vs;
 	}
 	if (vs == "1") {
 		vsInt = 1;
