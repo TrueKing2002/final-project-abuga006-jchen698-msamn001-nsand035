@@ -17,7 +17,7 @@
 
 
 
- The ChessProgram class is responsible for accepting and handling user input and provides all the differenct options the player can choose to make. Each ChessGame object will contain its own chess game. To interact with the board, ChessGame will make calls to the ChessBoard class which will manage and store the chess board. All the changes to the board will be through calls to this class. Each ChessBoard square will hold a pointer to a ChessPiece object, which itself is an abstract superclass with each type of chess piece being its own instantiable subclass.
+ The ChessProgram class is responsible for accepting and handling user input and provides all the different options the player can choose to make. Each ChessGame object will contain its own chess game. To interact with the board, ChessGame will make calls to the ChessBoard class which will manage and store the chess board. All the changes to the board will be through calls to this class. Each ChessBoard square will hold a pointer to a ChessPiece object, which itself is an abstract superclass with each type of chess piece being its own instantiable subclass.
  
  The ChessPiece class uses the Strategy design pattern to allow for all chess pieces to share the same exact interface. Each chess piece has two functions that will behave differently depending on what piece it is. This class declares that interface, and each individual chess piece forms its own concrete class that implements its own algorithms for each function in the interface. Thanks to this design pattern, using and storing each chess piece is a lot simpler and intuitive than it would have been if a completely different class for each chess piece was used.
 
