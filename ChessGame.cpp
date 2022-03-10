@@ -175,12 +175,12 @@ bool ChessGame::blackMate() {
 }
 
 bool ChessGame::canPromote() {
-    for (int i = 1; i < 65; i++) {
-	int row = i / 8;
-	if (i % 8 != 0) {
+    for (int i = 1; i < 65; i++) { //Traverse whole board 
+	int row = i / 8; //Check which row the index is on
+	if (i % 8 != 0) { //Make sure if it's not a special edge case to add 1 to the row to the correct row
 	    row += 1;
 	}
-	if (theBoard->getPiece(i) && theBoard->getPiece(i)->id == 1 && (row == 1 || row == 8)) {
+	if (theBoard->getPiece(i) && theBoard->getPiece(i)->id == 1 && (row == 1 || row == 8)) { //If the index holds a pawn on either end of the board, return true
 	    return true;
 	}
     }
@@ -188,29 +188,25 @@ bool ChessGame::canPromote() {
 }
 
 void ChessGame::promotePawn(int pieceType) {
-    ChessPiece* tempPiece = retrievePiece(pieceType);
-    for (int l = 1; l < 65; l++) {
-	int row = l / 8 + 1;
-	if (l % 8 != 0) {
+    ChessPiece* tempPiece = retrievePiece(pieceType); //Set a temporary piece to be the promoted piece
+    for (int l = 1; l < 65; l++) { //Traverse whole board
+	int row = l / 8 + 1; //Check which row the index is on
+	if (l % 8 != 0) { //Make sure to increment the row by 1 if it iis not on colunn h
 	    row += 1;
 	}
-	if (theBoard->getPiece(l) && theBoard->getPiece(l)->id == 1 && (row == 1 || row == 8)) {
-	    bool color = true;
-	    if (!theBoard->getPiece(l)->white) {
+	if (theBoard->getPiece(l) && theBoard->getPiece(l)->id == 1 && (row == 1 || row == 8)) { //If the index holds a pawn that can promote
+	    bool color = true; //Set the color to white
+	    if (!theBoard->getPiece(l)->white) { //Check if the piece is white, if it isn't, then set color to false (black)
 		color = false;
 	    }
-	    l = trans(l);
-	    theBoard->sendBoard()[l] = tempPiece;
-	    tempPiece->location = l;
-	    tempPiece->white = color;
+	    l = trans(l); //Translate the index 
+	    theBoard->sendBoard()[l] = tempPiece; //Replace the piece at that index to the promoted piece
+	    tempPiece->location = l; //Set the promoted piece's correct location
+	    tempPiece->white = color; //set the promoted piece's correct color
 	}
     }
 }
 
-<<<<<<< HEAD
-
-=======
->>>>>>> 7d746434d9924504e07d597559e0343615874ed4
 void ChessGame::announceCheck() {
     if (theBoard->whiteInCheck()) cout << "WHITE CHECK!" << endl;
     if (theBoard->blackInCheck()) cout << "BLACK CHECK!" << endl;
