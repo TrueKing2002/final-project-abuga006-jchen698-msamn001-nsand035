@@ -13,7 +13,9 @@
 
 
 ## Class Diagram
- <img width="820" alt="Screen Shot 2022-02-21 at 9 29 46 PM" src="https://user-images.githubusercontent.com/50130189/156101012-1b241a03-34cd-4607-a310-2542f0fd06af.png">
+<img width="817" alt="Screen Shot 2022-03-10 at 12 04 42 PM" src="https://user-images.githubusercontent.com/50130189/157745685-a95c17eb-607a-4b23-b0fe-71d3ac550bf6.png">
+
+
 
  The ChessProgram class is responsible for accepting and handling user input and provides all the differenct options the player can choose to make. Each ChessGame object will contain its own chess game. To interact with the board, ChessGame will make calls to the ChessBoard class which will manage and store the chess board. All the changes to the board will be through calls to this class. Each ChessBoard square will hold a pointer to a ChessPiece object, which itself is an abstract superclass with each type of chess piece being its own instantiable subclass.
  
@@ -25,6 +27,11 @@
  
  ## Screenshots
  <img width="692" alt="Screen Shot 2022-03-10 at 11 15 54 AM" src="https://user-images.githubusercontent.com/50130189/157738077-65e9af3f-7c36-44f1-8aae-18f6291de712.png">
+ 
+ <img width="693" alt="Screen Shot 2022-03-10 at 12 09 04 PM" src="https://user-images.githubusercontent.com/50130189/157746313-072fa56a-fa48-422a-b855-612c545d29a0.png">
+
+
+
 <img width="437" alt="Screen Shot 2022-03-10 at 11 37 06 AM" src="https://user-images.githubusercontent.com/50130189/157741347-ad74ce8a-1737-4ef4-aad4-f7d7b5e6d2db.png">
 
 
