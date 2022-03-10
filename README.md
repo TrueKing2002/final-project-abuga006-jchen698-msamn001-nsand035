@@ -3,15 +3,7 @@
   Authors: [Adolfo Bugarin](https://github.com/TrueKing2002), [Megan Samn](https://github.com/megansamn), [Justin Chen](https://github.com/jc51001), [Nick Sandburg](https://github.com/njsandburg)
  
 
- 
- > ## Expectations
- > * Incorporate **at least one** design pattern
- >   * It is recommended that you include a design pattern that we will teach this session (Composite, Strategy, or Visitor)
- > * Your project should be implemented in C++. If you wish to choose anoher programming language (e.g. Java, Python), please discuss with your lab TA to obtain permission.
- > * You can incorporate additional technologies/tools but they must be approved (in writing) by the instructor or the TA.
- > * Each member of the group **must** be committing code regularly and make sure their code is correctly attributed to them. We will be checking attributions to determine if there was equal contribution to the project.
- > * Each member of the group must actively participate in the Github Project board and reviewing commited code.
-> * All project phases are to be submitted to this GitHub repository. You should modify this README file to reflect the different phases of the project. In addition, you should regularly hold sprint meetings with your group. You will need to hold two scrum/check-in meetings with your lab TA/reader in two different weeks in addition to the final demo.
+
 
 
 ## Project Description
@@ -29,18 +21,21 @@
 
 
 
- 
- > ## Final deliverable
- > All group members will give a demo to the TA/reader during lab time. The TA/reader will check the demo and the project GitHub repository and ask a few questions to all the team members. 
- > Before the demo, you should do the following:
- > * Complete the sections below (i.e. Screenshots, Installation/Usage, Testing)
- > * Plan one more sprint (that you will not necessarily complete before the end of the quarter). Your In-progress and In-testing columns should be empty (you are not doing more work currently) but your TODO column should have a full sprint plan in it as you have done before. This should include any known bugs (there should be some) or new features you would like to add. These should appear as issues/cards on your Project board.
- > * Make sure your README file and Project board are up-to-date reflecting the current status of your project (e.g. any changes that you have made during the project such as changes to your class diagram). Previous versions should still be visible through your commit history. 
+
  
  ## Screenshots
- > Screenshots of the input/output after running your application
+ <img width="692" alt="Screen Shot 2022-03-10 at 11 15 54 AM" src="https://user-images.githubusercontent.com/50130189/157738077-65e9af3f-7c36-44f1-8aae-18f6291de712.png">
+<img width="437" alt="Screen Shot 2022-03-10 at 11 37 06 AM" src="https://user-images.githubusercontent.com/50130189/157741347-ad74ce8a-1737-4ef4-aad4-f7d7b5e6d2db.png">
+
+
  ## Installation/Usage
- > Instructions on installing and running your application
+Type in terminal: 
+
+```
+g++ main.cpp
+./a.out
+```
+
  ## Testing
- > How was your project tested/validated? If you used CI, you should have a "build passing" badge in this README.
+As we added new features, they were tested using the features we previously implemented. All new features were tested rigorously to make sure they didn't break under any circumstances, including edge cases and extreme inputs. Additionally, in all instances where user input was expected, it was fully tested to verify that all types of inputs were handled and treated appropriately.
  
