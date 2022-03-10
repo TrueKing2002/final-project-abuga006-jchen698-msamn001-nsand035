@@ -155,6 +155,18 @@ void ChessProgram::printMenu()
 	return;
 }
 
+void ChessProgram::gameMenu()
+{
+	cout << "********************************************************************\n";
+	cout << "** Please select from the following choices:                      **\n";
+	cout << "** u - undo a move (in the game)                                  **\n";
+	cout << "** r - make a random move (in the game)                           **\n";
+	cout << "** s - save and return to main menu                               **\n";
+	cout << "** b - return back to the game                                    **\n";
+	cout << "********************************************************************\n";
+	return;
+}
+
 int ChessProgram::loadMenu() {
 	string choice = " ";
 	int choiceNum = 0;
