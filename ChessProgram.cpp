@@ -10,14 +10,23 @@ ChessProgram::~ChessProgram() {
 void ChessProgram::startGame() {
     string in = " ";
     //currentGame->swapPlayer(); // Uncomment to start as black
-    while(in.at(0) != 'q') { // Currently q quits, maybe change to o for more options
+    while(in.at(0) != 's') { // Currently q quits, maybe change to o for more options
         currentGame->printBoard();
         in = " ";
 
-        while(in.size() < 1 || (in.at(0) != 'q' && !attemptMove(in))) {
-            cout << "Input move: ";
+        while(in.size() < 1 || (in.at(0) != 's' && !attemptMove(in))) {
+            cout << "Input move (or 'o' for more options): ";
             getline(cin, in);
             if (in.size() == 1) {
+		if (in.at(0) == 'o') {
+                    printGameMenu();
+                    cin >> in;
+                    if (in == "b") {
+                        in = " ";
+                        currentGame->printBoard();
+                    }
+                    getline(cin, input);
+                }
                 if (in.at(0) == 'u') { // u undos your move
                     currentGame->undoMoves();
                     currentGame->printBoard();
@@ -43,14 +52,14 @@ void ChessProgram::startGame() {
             in = " ";
         }
 
-        if (currentGame->announceMate()) in = "q";
-        else if (in.at(0) != 'q') {
+        if (currentGame->announceMate()) in = "s";
+        else if (in.at(0) != 's') {
              currentGame->announceCheck();
 
              if (currentGame->opponentIsComputer) currentGame->computerMove();
              else currentGame->swapPlayer();
 
-             if (currentGame->announceMate()) in = "q";
+             if (currentGame->announceMate()) in = "s";
              else currentGame->announceCheck();
         }
     }
@@ -152,12 +161,12 @@ void ChessProgram::printMenu()
 	return;
 }
 
-void ChessProgram::gameMenu()
+void ChessProgram::printGameMenu()
 {
 	cout << "********************************************************************\n";
 	cout << "** Please select from the following choices:                      **\n";
-	cout << "** u - undo a move (in the game)                                  **\n";
-	cout << "** r - make a random move (in the game)                           **\n";
+	cout << "** u - undo a move                                                **\n";
+	cout << "** r - make a random move                                         **\n";
 	cout << "** s - save and return to main menu                               **\n";
 	cout << "** b - return back to the game                                    **\n";
 	cout << "********************************************************************\n";
