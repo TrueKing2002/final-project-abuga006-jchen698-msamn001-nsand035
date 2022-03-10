@@ -93,11 +93,12 @@ void ChessGame::announce(int c) {
 
 void ChessGame::undoMoves() { // Undos two moves so player can move again
     if (!moveLog.empty()) {
-        swapPlayer();
         undo();
-        swapPlayer();
-        undo();
-	cout << "UNDID MOVES" << endl;
+        if (!moveLog.empty()) {
+            undo();
+	    cout << "UNDID MOVES" << endl;
+	}
+	else cout << "UNDID MOVE" << endl;
     }
 }
 
@@ -184,12 +185,14 @@ bool ChessGame::announceMate() {
         if (theBoard->whiteInCheck()) cout << "WHITE CHECKMATE" << endl;
         else cout << "WHITE STALEMATE" << endl;
         printBoard();
+	cout << "Good game!" << endl;
         return true;
     }
     if (blackMate()) {
         if (theBoard->blackInCheck()) cout << "BLACK CHECKMATE" << endl;
         else cout << "BLACK STALEMATE" << endl;
         printBoard();
+	cout << "Good game!" << endl;
         return true;
     }
     return false;
