@@ -33,11 +33,13 @@ void ChessProgram::startGame() {
                 }
             }
         }
-	if (currentGame->canPromote()) {
-	    cout << "Input Promotion: \n2 = knight\n3 = bishop\n4 = rook\n5 = queen\n";
-	    int userInput;
-	    cin >> userInput;
-	    currentGame->promotePawn(userInput);
+	if (currentGame->canPromote()) { //Checks if there is a pawn that is going to be promoted
+	    cout << "Input Promotion: \n2 = knight\n3 = bishop\n4 = rook\n5 = queen\n"; //Output instructions for pawn promotion
+	    int userInput; 
+	    cin >> userInput; //get user input
+	    currentGame->promotePawn(userInput); //promote the pawn
+	    getline(cin, input); //Catches whitelines
+	    input = " ";
 	}
 	if (currentGame->announceMate()) input = "q";
         else if (input.at(0) != 'q') {
