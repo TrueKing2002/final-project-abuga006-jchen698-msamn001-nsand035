@@ -12,7 +12,7 @@ bool ChessGame::move(int l, int d) {	// Assume l and d are valid board indices
             moveLog.push(0);
 	}
 
-        theBoard->movePiece(l, d);
+	theBoard->movePiece(l, d);
         return true;
     }
     //cout << "Invalid Move!" << endl;
@@ -173,6 +173,40 @@ bool ChessGame::blackMate() {
             }
     return true;            
 }
+
+bool ChessGame::canPromote() {
+    for (int i = 1; i < 65; i++) {
+	int row = i / 8;
+	if (i % 8 != 0) {
+	    row += 1;
+	}
+	if (theBoard->getPiece(i) && theBoard->getPiece(i)->id == 1 && (row == 1 || row == 8)) {
+	    return true;
+	}
+    }
+    return false;
+}
+
+void ChessGame::promotePawn(int pieceType) {
+    ChessPiece* tempPiece = retrievePiece(pieceType);
+    for (int l = 1; l < 65; l++) {
+	int row = l / 8 + 1;
+	if (l % 8 != 0) {
+	    row += 1;
+	}
+	if (theBoard->getPiece(l) && theBoard->getPiece(l)->id == 1 && (row == 1 || row == 8)) {
+	    bool color = true;
+	    if (!theBoard->getPiece(l)->white) {
+		color = false;
+	    }
+	    l = trans(l);
+	    theBoard->sendBoard()[l] = tempPiece;
+	    tempPiece->location = l;
+	    tempPiece->white = color;
+	}
+    }
+}
+
 
 void ChessGame::announceCheck() {
     if (theBoard->whiteInCheck()) cout << "WHITE CHECK!" << endl;
