@@ -13,7 +13,7 @@ class ChessProgram {
 	string input = " ";
 	void startGame();
 	void printMenu();
-	void gameMenu();
+	void printGameMenu();
 	int chooseColor();
 	int PlayerComputer();
 	int loadMenu();
