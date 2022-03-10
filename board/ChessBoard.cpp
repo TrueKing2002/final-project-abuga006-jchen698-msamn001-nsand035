@@ -9,6 +9,7 @@ ChessBoard::~ChessBoard() {
     for (int i = 0; i < 64; i++)
         if (board[i] != nullptr)
             delete board[i];
+    delete[] board;
 }
 
 void ChessBoard::newBoard() {
