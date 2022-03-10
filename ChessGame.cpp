@@ -4,15 +4,28 @@ bool ChessGame::move(int l, int d) {	// Assume l and d are valid board indices
     if (theBoard->getPiece(l) && theBoard->getPiece(l)->canMove(theBoard->sendBoard(), d)) {
         moveLog.push(l);
         moveLog.push(d);
+        
+	bool capturedPiece = false;
+        int color, id;
         if (theBoard->getPiece(d)) {
-	    moveLog.push(theBoard->getPiece(d)->white);
-	    moveLog.push(theBoard->getPiece(d)->id);
-	} else {
-	    moveLog.push(-1);
-            moveLog.push(0);
-	}
+            color = theBoard->getPiece(d)->white;
+            id = theBoard->getPiece(d)->id;
+            capturedPiece = true;
+        }
 
-	theBoard->movePiece(l, d);
+        theBoard->movePiece(l, d);
+
+        if (canPromote()) moveLog.push(1);
+        else moveLog.push(-1);
+
+        if (capturedPiece) {
+            moveLog.push(color);
+            moveLog.push(id);
+        } else {
+            moveLog.push(-1);
+            moveLog.push(0);
+        }
+
         return true;
     }
     //cout << "Invalid Move!" << endl;
@@ -56,6 +69,10 @@ void ChessGame::computerMove() {
 	    	undo();
 	    	randomPiece = nullptr;
     	    }
+	    if (canPromote()) {
+                if (rand() % 2 == 0) promotePawn(5); // Promotes to queen
+                else promotePawn(2); // Promotes to knight
+            }
 	}
     	cout << "COMPUTER MOVE: ";
     	announceMove(randomLoc, randomDest);
@@ -108,11 +125,26 @@ void ChessGame::undo() {
     int color = moveLog.top();
     moveLog.pop();
 
+    bool promoted = false;
+    if (moveLog.top() == 1) {
+        promoted = true;
+    }
+    moveLog.pop();
+
     int tempLoc = moveLog.top();
     moveLog.pop();
+
+    if (promoted) {
+        int color = theBoard->getPiece(tempLoc)->white;
+        delete theBoard->getPiece(tempLoc);
+        theBoard->sendBoard()[trans(tempLoc)] = new Pawn; // Replaces a promoted piece back to pawn
+        theBoard->getPiece(tempLoc)->location = trans(tempLoc);
+        theBoard->getPiece(tempLoc)->white = color;
+    }
+
     int tempDest = moveLog.top();
     moveLog.pop();
-    theBoard->movePiece(tempLoc, tempDest); // Moves last piece back to old location
+    theBoard->movePiece(tempLoc, tempDest); // Moves last piece moved back to old location
 
     tempLoc = trans(tempLoc);
     theBoard->sendBoard()[tempLoc] = tempPiece; // Replaces a captured piece if there was one
