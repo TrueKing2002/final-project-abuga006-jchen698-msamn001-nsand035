@@ -127,7 +127,7 @@ void ChessProgram::start() {
 		else if (menuOption == 2) {
 			//cout << "load game" << endl;
 			if (games.size() == 0) {
-				cout << "Error: No games started!" << endl;
+				cout << "Error: No games started." << endl;
 			}
 			else {
 				currentGame = nullptr;
