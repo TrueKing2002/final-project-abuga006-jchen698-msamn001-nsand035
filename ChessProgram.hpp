@@ -16,7 +16,7 @@ class ChessProgram {
 	void gameMenu();
 	int chooseColor();
 	int PlayerComputer();
-	int loadMenu();	
+	int loadMenu();
 
     public:
         ChessProgram();

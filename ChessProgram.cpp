@@ -17,7 +17,7 @@ void ChessProgram::startGame() {
         while(in.size() < 1 || (in.at(0) != 'q' && !attemptMove(in))) {
             cout << "Input move: ";
             getline(cin, in);
-	    if (in.size() == 1) {
+            if (in.size() == 1) {
                 if (in.at(0) == 'u') { // u undos your move
                     currentGame->undoMoves();
                     currentGame->printBoard();
@@ -30,16 +30,32 @@ void ChessProgram::startGame() {
                 }
             }
         }
-	if (currentGame->announceMate()) in = "q";
+
+        if (currentGame->canPromote()) { //Checks if there is a pawn that is going to be promoted
+            cout << "Input Promotion: \n2 = knight\n3 = bishop\n4 = rook\n5 = queen\n"; //Output instructions for pawn promotion
+            int userInput; 
+            cin >> userInput; //get user input
+	    while (userInput < 2 || userInput > 5) {
+	        cout << "Invalid Input! Please input a number from 2-5\n";
+	        cin >> userInput;
+	        getline(cin, input);
+	        input = " ";
+	    }
+            currentGame->promotePawn(userInput); //promote the pawn
+            getline(cin, in); //Catches whitelines
+            in = " ";
+        }
+
+        if (currentGame->announceMate()) in = "q";
         else if (in.at(0) != 'q') {
-	    currentGame->announceCheck();
+             currentGame->announceCheck();
 
-	    if (currentGame->opponentIsComputer) currentGame->computerMove();
-	    else currentGame->swapPlayer();
+             if (currentGame->opponentIsComputer) currentGame->computerMove();
+             else currentGame->swapPlayer();
 
-	    if (currentGame->announceMate()) in = "q";
-	    else currentGame->announceCheck();
-	}
+             if (currentGame->announceMate()) in = "q";
+             else currentGame->announceCheck();
+        }
     }
 }
 

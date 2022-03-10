@@ -31,6 +31,8 @@ class ChessGame {
 	void undo();
 	bool playerInCheck();
 	bool playerInMate();
+	bool canPromote();
+	void promotePawn(int);
 	void announceCheck();
 	bool announceMate();
 };
