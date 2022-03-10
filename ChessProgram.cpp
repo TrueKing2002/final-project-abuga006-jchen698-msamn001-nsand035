@@ -35,6 +35,12 @@ void ChessProgram::startGame() {
             cout << "Input Promotion: \n2 = knight\n3 = bishop\n4 = rook\n5 = queen\n"; //Output instructions for pawn promotion
             int userInput; 
             cin >> userInput; //get user input
+	    while (userInput < 2 || userInput > 5) {
+	        cout << "Invalid Input! Please input a number from 2-5\n";
+	        cin >> userInput;
+	        getline(cin, input);
+	        input = " ";
+	    }
             currentGame->promotePawn(userInput); //promote the pawn
             getline(cin, in); //Catches whitelines
             in = " ";

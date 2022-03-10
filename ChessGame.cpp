@@ -189,15 +189,6 @@ bool ChessGame::canPromote() {
 }
 
 void ChessGame::promotePawn(int pieceType) {
-    while (pieceType < 2 || pieceType > 5) {
-	cout << "Invalid Input! Please input a number from 2-5\n";
-	string input = " ";
-	int userInput;
-	cin >> userInput;
-	pieceType = userInput;
-	getline(cin, input);
-	input = " ";
-    }
     ChessPiece* tempPiece = retrievePiece(pieceType); //Set a temporary piece to be the promoted piece
     for (int l = 1; l < 65; l++) { //Traverse whole board
 	int row = l / 8; //Check which row the index is on
