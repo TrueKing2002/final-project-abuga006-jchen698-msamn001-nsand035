@@ -207,7 +207,10 @@ void ChessGame::promotePawn(int pieceType) {
     }
 }
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 7d746434d9924504e07d597559e0343615874ed4
 void ChessGame::announceCheck() {
     if (theBoard->whiteInCheck()) cout << "WHITE CHECK!" << endl;
     if (theBoard->blackInCheck()) cout << "BLACK CHECK!" << endl;
