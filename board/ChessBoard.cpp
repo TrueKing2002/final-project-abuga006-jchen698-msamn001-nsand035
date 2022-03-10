@@ -27,6 +27,9 @@ void ChessBoard::newBoard() {
         board[i]->white = true;
         board[i]->location = i;
     }
+	
+    for (int i = 16; i < 48; i++)
+        board[i] = nullptr;
 
     for (int i = 48; i < 56; i++)    // Sets up black pieces
         board[i] = new Pawn;
