@@ -35,6 +35,7 @@ class ChessGame {
 	void promotePawn(int);
 	void announceCheck();
 	bool announceMate();
+	bool allowCheats = true; // Undos and random (computer) moves ON by default
 };
 
 #endif
