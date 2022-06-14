@@ -14,8 +14,10 @@ class ChessProgram {
 	void startGame();
 	void printMenu();
 	void printGameMenu();
+	void printGameMenuNoCheats();
 	int chooseColor();
-	int PlayerComputer();
+	int playerComputer();
+	int allowCheats();
 	int loadMenu();
 
     public:
