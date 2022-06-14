@@ -263,11 +263,11 @@ int ChessProgram::allowCheats() {
     string choice = " ";
 	int choiceNum = 0;
 	cout << "Allow cheats? (undos and random moves)\n";
-	while (choice != "y" && choice != "n") {
-		cout << "Please enter \"y\" for yes or \"n\" for no: ";
+	while (choice != "1" && choice != "2") {
+		cout << "Please enter 1 for yes or 2 for no: ";
 		cin >> choice;
 	}
-	if (choice == "n") {
+	if (choice == "2") {
 		choiceNum = 0;
 	}
 	else {
