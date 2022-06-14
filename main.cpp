@@ -1,8 +1,8 @@
 #include "ChessProgram.cpp"
 
 int main() {
-    ChessProgram program;
-    program.start();
+    //ChessProgram program;
+    //program.start();
     
     string input = "0";
     while (input < "1" || input > "2") {
