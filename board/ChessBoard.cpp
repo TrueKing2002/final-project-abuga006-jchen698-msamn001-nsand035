@@ -94,6 +94,7 @@ bool ChessBoard::blackInCheck() {
 }
 
 void ChessBoard::printBoardWhite() {
+    cout << endl;
     int row = 8;
     for (int i = 63; i >= 0; i--) {
         if ((i + 1) % 8 == 0) {cout << row << ' '; row--;}
@@ -105,6 +106,7 @@ void ChessBoard::printBoardWhite() {
 }
 
 void ChessBoard::printBoardBlack() {
+    cout << endl;
     int row = 1;
     for (int i = 0; i < 64; i++) {
         if ((i + 8) % 8 == 0) {cout << row << ' '; row++;}
