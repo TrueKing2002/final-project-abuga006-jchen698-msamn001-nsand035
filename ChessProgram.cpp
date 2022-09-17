@@ -76,7 +76,7 @@ void ChessProgram::startGame() {
     }
 }
 
-bool ChessProgram::attemptMove(string coords) { // By Megan Samn and me
+bool ChessProgram::attemptMove(string coords) { // By Megan Samn and Adolfo Bugarin
     if (coords.length() < 5) return false;
     if (coords.at(0) >= 'a' && coords.at(0) <= 'h' && coords.at(3) >= 'a' && coords.at(3) <= 'h' && coords.at(1) >= '1' && coords.at(1) <= '8' && coords.at(4) >= '1' && coords.at(4) <= '8') {
         int icol = coords.at(0) - 96;
@@ -104,7 +104,7 @@ ChessGame* ChessProgram::selectGame(int i) {
     return games.at(i);
 }
 
-void ChessProgram::start() { // By Nick Sandburg, edited by me
+void ChessProgram::start() { // By Nick Sandburg, edited by Adolfo Bugarin
 	int menuOption = 0;
         while (menuOption != 3) {
 		menuOption = loadMenu();
