@@ -134,14 +134,14 @@ void ChessGame::computerMove() { // By Megan Samn, edited by Adolfo Bugarin
             }
         }
         if (randomMove) {
-            cout << "RANDOM COMPUTER MOVE: ";
+            cout << "COMPUTER MOVE: "; // "RANDOM COMPUTER MOVE: ";
             announceMove(randomLoc, randomDest);
         }
     }
     swapPlayer();
 }   
 
-bool ChessGame::canCheck() {
+bool ChessGame::canCheck() { // Returns whether or not the current player can check the opponent
     vector<int> checkMoves;
     int l, d;
     for (l = 1; l < 65; l++) {
@@ -155,14 +155,14 @@ bool ChessGame::canCheck() {
                 undo();
             }
     }
-    if (checkMoves.size() > 0) {
+    if (checkMoves.size() > 0) { // Picks a random move that checks the opponent if available
         int i = rand() % checkMoves.size();
         if (i % 2 == 1) i--;
         l = checkMoves.at(i);
         d = checkMoves.at(++i);
 
-        move(l, d);
-        cout << "PLANNED COMPUTER MOVE: ";
+        move(l, d); // Makes that move
+        cout << "COMPUTER MOVE: "; // "PLANNED COMPUTER MOVE: ";
         announceMove(l, d);
         return true;
     }
