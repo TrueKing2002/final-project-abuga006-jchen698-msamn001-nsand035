@@ -8,8 +8,8 @@ public:
         if (white) return "♜";
         else return "♖";
     }
-    
-    bool validColumn(ChessPiece** board, int dest, int location) {
+
+    bool validColumn(ChessPiece** board, int dest, int location) { // By Megan Samn
     	for (int i = 1; i < 9; ++i) {
 	    
 	    if (location - (8*i) > 0 && location - (8*i) >= dest) { //move Rook down
@@ -33,7 +33,7 @@ public:
         return false;
     }
 	
-    bool validRow(ChessPiece** board, int dest, int location) {
+    bool validRow(ChessPiece** board, int dest, int location) { // By Megan Samn
     	int leftEdge = 0;
     	int rightEdge = 0;
     
@@ -67,7 +67,7 @@ public:
     	return false;
     }
 
-    bool canMove(ChessPiece** board, int dest) {
+    bool canMove(ChessPiece** board, int dest) { // By Megan Samn and Adolfo Bugarin
 	dest = trans(dest);
 	if (validRow(board, dest, location) || validColumn(board, dest, location)) {
         // if dest is in same row or in same column and has a clear path
