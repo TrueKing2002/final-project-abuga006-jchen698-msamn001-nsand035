@@ -8,8 +8,10 @@
 
 ## Project Description
   * Chess has always been a favorite game of mine ever since I learned how to play it. It's both fun and strategic and every game is different but sure to excite.
-  * I plan to code this game in C++
-  * The user will be able to start a game, selecting whether to play the computer or another player, or load an incomplete game and continue playing. The user will input the coordinates of the piece they want to move and the coordinates of where they want to move it. They will have the option to undo a move and to save the game.
+  * This game is written in C++
+  * The user is able to start a game, selecting whether to play the computer or another player, or load an incomplete game and continue playing. The user inputs the coordinates of the piece they want to move and the coordinates of where they want to move it. They have the option to undo a move and to save the game.
+  * Supports all legal moves except for castling and en passant
+  * Game ends in either checkmate or stalemate
 
 
 ## Class Diagram
