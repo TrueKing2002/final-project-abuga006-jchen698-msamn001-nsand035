@@ -1,3 +1,5 @@
+// ** All functions and code unclaimed by other authors were written by Adolfo Bugarin **
+
 #include "ChessProgram.cpp"
 
 int main() {
