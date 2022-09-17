@@ -9,7 +9,7 @@ public:
         else return "♘";
     }
     
-    bool canMove(ChessPiece** board, int dest) {
+    bool canMove(ChessPiece** board, int dest) { // By Justin Chen
 	dest = trans(dest);
 
 	if (board[dest] != nullptr) {
