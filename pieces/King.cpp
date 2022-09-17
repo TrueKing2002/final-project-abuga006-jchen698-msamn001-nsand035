@@ -8,7 +8,7 @@ public:
         if (white) return "♚";
         else return "♔";
     }
-    
+	// Everything below by Nick Sandburg
     bool UpDown(ChessPiece** board, int dest, int location) {
         // check above and below (+8/-8)
         if ((dest == location + 8) || (dest == location - 8)) {
